@@ -1,0 +1,20 @@
+.search-home{
+    width:70%;
+    border: 1px solid rgb(115, 117, 117);
+    border-radius: 5px;
+    padding: 20px 40px 40px 40px;
+    position: relative;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+.page-title{
+    margin-bottom: 20px;
+}
+
+.search-btn-home {
+    background-color: transparent;
+    color: #00828c;
+    border: 1px solid #00828c;
+    border-radius: 8px;
+}

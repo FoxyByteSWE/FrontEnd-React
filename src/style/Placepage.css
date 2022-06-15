@@ -1,0 +1,37 @@
+.comments{
+    margin-top: 5%;
+    margin-left: 20px;
+}
+
+.comment{
+    border: 1px solid rgb(115, 117, 117);
+    border-radius: 5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-top: 10px;
+    
+}
+.comment h4,.comment span, h4{
+    display: inline;
+}
+
+.carousel{
+    width: 65%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ratings{
+    width:8em;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.review-container{
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width:90%;
+}
