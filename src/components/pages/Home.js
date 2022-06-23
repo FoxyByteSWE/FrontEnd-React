@@ -1,7 +1,6 @@
 import React from "react";
 import "../../style/Homepage.css";
-import { FiSearch } from 'react-icons/fi';
-
+import Search from "../Search";
 
 function Home() {
     return(
@@ -9,13 +8,10 @@ function Home() {
             <div className="home-content">
                 <h1 className="page-title text-center">Guida Michelin @ social</h1>
                 <div className="search-home">
-                <p>
+                <p className="text-center home-text pb-3">
                     Find all your favourite restaurants and descover new places!
                 </p>
-                <form className="d-flex mt-4" role="search">
-                    <input className="form-control me-2 " type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="search-btn-home" type="submit"><FiSearch size="25"/></button>
-                </form>
+                    <Search/>
                 </div>
             </div>
         </div>

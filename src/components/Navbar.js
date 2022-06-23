@@ -1,25 +1,28 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {Link} from 'react-router-dom';
-import { FiLogIn, FiUserPlus, FiSearch, FiMenu } from 'react-icons/fi';
+import { useLocation } from "react-router";
+import { FiLogIn, FiUserPlus, FiMenu } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
-
+import mainLogo from "../Logo/Logo.png";
+import Search from "./Search";
 
 function Navbar() {
-
+    const path = useLocation().pathname;
     const navRef = useRef();
     const showNavbar = () => {
         navRef.current.classList.toggle("responsive_nav");
     }
+
 /*<button onClick={showNavbar} className="exit-btn mobile-menu-btn"><AiOutlineClose size="30" /></button>  */
     return(
         <div className="navbar">
-            <Link to="/home" className="logo">Logo</Link>
-                    <form className="d-flex search-container" role="search">
-                                <input className="search-bar form-control me-2 " type="search" placeholder="Search" aria-label="Search"/>
-                                <button className="search-btn" type="submit"><FiSearch size="25"/></button>
-                    </form>
+            <Link to="/home" className="logo"><img src={mainLogo} alt="Logo" /></Link>
+                {
+                    (path != "/home") && 
+                    <Search />
+                }
                         <button onClick={showNavbar} ref={navRef} className="exit-btn mobile-menu-btn"><AiOutlineClose size="30" /></button>
                         <ul onClick={showNavbar} ref={navRef} className="nav-links">
                             <li>
