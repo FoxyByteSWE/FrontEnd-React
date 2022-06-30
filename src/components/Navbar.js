@@ -18,8 +18,9 @@ function Navbar() {
 /*<button onClick={showNavbar} className="exit-btn mobile-menu-btn"><AiOutlineClose size="30" /></button>  */
     return(
         <div className="navbar">
-            <Link to="/home" className="logo"><img src={mainLogo} alt="Logo" /></Link>
+            <Link to="/" className="logo"><img src={mainLogo} alt="Logo" /></Link>
                         <button onClick={showNavbar} ref={navRef} className="exit-btn mobile-menu-btn"><AiOutlineClose size="30" /></button>
+                        <Search/>
                         <ul onClick={showNavbar} ref={navRef} className="nav-links">
                             <li>
                                 <Link to="/favourites" className="text-decoration-none"><FiHeart className="font-nav" size="25"/></Link>

@@ -9,7 +9,7 @@ function RestaurantCard() {
             <div className="card-body text-center">
                 <h5 className="card-title">Nome Ristorante</h5>
                 <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <Link to="\place-page" className="btn btn-primary card-btn">Check it</Link>
+                <Link to="/place-page" className="btn btn-primary card-btn">Check it</Link>
             </div>
         </div>
     );

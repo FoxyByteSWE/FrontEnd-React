@@ -1,7 +1,8 @@
 import React from "react";
 import "../../style/Placepage.css";
-
-function Placepages() {
+import { GoLocation } from 'react-icons/go';
+import { BsTelephoneFill } from 'react-icons/bs';
+function PlacePage() {
     return (
         <div className="container mb-5 py-5 ">
             <h1 className="mb-3 text-center">Nome del posto</h1>
@@ -32,11 +33,15 @@ function Placepages() {
                 </button>
                 
             </div>
-                <p className="my-5 text-justify description">Descrizione Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                <div className="info-ristorante">
+                    <p className="indirizzo"><GoLocation className="font-nav mr" size="20"/>Via Roma 15, 50122 Firenze</p>
+                    <p className="tel"><BsTelephoneFill className="font-nav mr" size="20"/>0123456789</p>
+                    <p className="my-5 text-justify description">Descrizione Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
                     molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
                     aliquam voluptatem veniam, est atque cumque eum delectus sint!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
                     molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
                     aliquam voluptatem veniam, est atque cumque eum delectus sint</p>
+                </div>  
 
             <div className="pb-4 review-container">
                 <h3 className="text-center">Punteggio e recensioni</h3>
@@ -83,7 +88,7 @@ function Placepages() {
     );
 }
 
-export default Placepages;
+export default PlacePage;
 
 
 

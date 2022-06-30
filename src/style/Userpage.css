@@ -1,0 +1,38 @@
+.user-card{
+    width: 50em;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+.user-card-left{
+    background-color: #0e5157;
+    width: 30%;
+    height: 20em;
+    padding: 30px;
+}
+
+.user-card-info{
+    width: 70%;
+}
+
+.user-card-in{
+    margin: 15px 30px 30px 30px;
+}
+
+.user-card-in-left img{
+    width:10em;
+    height: 10em;
+}
+
+.user-card-in-left h6{
+    color: whitesmoke;
+}
+
+.user-card-in-left button{
+    margin-top: 25px;
+}
+
+.b-b-default {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 10px ;
+}
