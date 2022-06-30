@@ -1,17 +1,38 @@
 import React from "react";
 import "../../style/Homepage.css";
-import Search from "../Search";
+import RestaurantCard from "../RestaurantCard";
 
 function Home() {
     return(
-        <div className="container my-5 py-5 ">
+        <div className="container my-5">
             <div className="home-content">
-                <h1 className="page-title text-center">Guida Michelin @ social</h1>
-                <div className="search-home">
-                <p className="text-center home-text pb-3">
-                    Find all your favourite restaurants and descover new places!
-                </p>
-                    <Search/>
+                <div className="container-consigliati">
+                    <h2 className="page-title">Risitorati consigliati</h2>
+                    <div class="row py-3">
+                        <div class="col-sm my-3">
+                            <RestaurantCard/>
+                        </div>
+                        <div class="col-sm my-3">
+                            <RestaurantCard/>
+                        </div>
+                        <div class="col-sm my-3">
+                            <RestaurantCard/>
+                        </div>
+                    </div>
+                </div>
+                <div className="container-consigliati">
+                    <h2 className="page-title">I migliori ristoranti in zona</h2>
+                    <div class="row py-3">
+                        <div class="col-sm my-3">
+                            <RestaurantCard/>
+                        </div>
+                        <div class="col-sm my-3">
+                            <RestaurantCard/>
+                        </div>
+                        <div class="col-sm my-3">
+                            <RestaurantCard/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

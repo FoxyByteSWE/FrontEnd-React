@@ -16,6 +16,10 @@
 .home-text{
     color: white;
 }
+
+.container-consigliati{
+    margin-bottom: 7em;
+}
 @media only screen and (max-width: 1024px) {
     .search-home{
         width:100%;

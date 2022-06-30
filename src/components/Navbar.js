@@ -2,7 +2,7 @@ import React from "react";
 import { useRef } from "react";
 import {Link} from 'react-router-dom';
 import { useLocation } from "react-router";
-import { FiLogIn, FiUserPlus, FiMenu } from 'react-icons/fi';
+import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiMenu, FiHeart } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
 import mainLogo from "../Logo/Logo.png";
@@ -19,17 +19,22 @@ function Navbar() {
     return(
         <div className="navbar">
             <Link to="/home" className="logo"><img src={mainLogo} alt="Logo" /></Link>
-                {
-                    (path != "/home") && 
-                    <Search />
-                }
                         <button onClick={showNavbar} ref={navRef} className="exit-btn mobile-menu-btn"><AiOutlineClose size="30" /></button>
                         <ul onClick={showNavbar} ref={navRef} className="nav-links">
                             <li>
-                                <Link to="/login" className="text-decoration-none">Login<FiLogIn className="font-nav" size="25"/></Link>
+                                <Link to="/favourites" className="text-decoration-none"><FiHeart className="font-nav" size="25"/></Link>
                             </li>
                             <li>
-                                <Link to="/sign-up" className="text-decoration-none">Sign Up<FiUserPlus className="font-nav" size="25"/></Link>
+                                <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
+                            </li>
+                            <li>
+                                <Link to="/favourites" className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></Link>
+                            </li>
+                            <li>
+                                <Link to="/login" className="text-decoration-none"><FiLogIn className="font-nav" size="25"/></Link>
+                            </li>
+                            <li>
+                                <Link to="/sign-up" className="text-decoration-none"><FiUserPlus className="font-nav" size="25"/></Link>
                             </li>
                         </ul>
             <button onClick={showNavbar} className="mobile-menu-btn hamburger-btn"><FiMenu size="30" /></button>  
