@@ -1,18 +1,44 @@
- var mysql = require('mysql');
+function getDataFromDB(callback) {
+	var ret;
 
-var con = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "root",
-	database: "Restaurants"
-});
+	var mysql = require('mysql');
 
-con.connect(function(err) {
-	if (err) throw err;
-	console.log("Connected!");
-});
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "root",
+		password: "root",
+		database: "Restaurants"
+	});
 
-con.query("SELECT * FROM Restaurants", function (err, result, fields) {
-	if (err) throw err;
-	console.log(result);
+	con.connect(function(err) {
+		if (err) throw err;
+		console.log("Connected!");
+	});
+
+	sql_query = "SELECT * FROM Restaurants";
+
+	con.query(sql_query, function (err, result, fields) {
+		if (err) throw err;
+		restaurants = [];
+		for (let i = 0; i < result.length; ++i) {
+			restaurant = new Map();
+			restaurant.set("Codice_pk", result[i].Codice_pk);
+			restaurant.set("Nome", result[i].Nome);
+			restaurant.set("Categoria", result[i].Categoria);
+			restaurant.set("Indirizzo", result[i].Indirizzo);
+			restaurant.set("Sito", result[i].Sito);
+			restaurant.set("Telefono", result[i].Telefono);
+			restaurant.set("Ranking", result[i].Ranking);
+			restaurants.push(restaurant)
+		}
+		return callback(restaurants);
+	});
+}
+
+var data = '';
+
+getDataFromDB(function(result) {
+	data = result;
+
+	console.log(data);
 });
