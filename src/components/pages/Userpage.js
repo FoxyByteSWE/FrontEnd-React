@@ -3,6 +3,7 @@ import "../../style/Userpage.css";
 function UserPage() {
     return (
         <div className="container my-5">
+            <h2 className="text-center">Your Page</h2>
             <div className="user-card d-flex flex-row">
                 <div className="user-card-left">
                     <div className="user-card-in-left d-flex flex-column align-items-center">
