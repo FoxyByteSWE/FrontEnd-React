@@ -1,3 +1,33 @@
+const express = require("express");
+const app = express();
+const mysql = require("mysql");
+const cors = require("cors");
+
+app.use(cors());
+app.use(express.json());
+
+var con = mysql.createConnection({
+	host: "localhost",
+	user: "root",
+	password: "root",
+	database: "Restaurants"
+});
+
+app.get('/restaurants', (req, res) => {
+
+	con.query("SELECT * FROM restaurants;", (err, result) => {
+		if (err) {
+			console.log(err));
+		} else {
+			res.send(result);
+		}
+	});
+});
+
+
+
+
+/*
 function getDataFromDB(callback) {
 	var ret;
 
@@ -42,3 +72,4 @@ getDataFromDB(function(result) {
 
 	console.log(data);
 });
+*/
