@@ -6,25 +6,26 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-var con = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "root",
-	database: "Restaurants"
+const db = mysql.createConnection({
+  user: "root",
+  host: "localhost",
+  password: "root",
+  database: "Restaurants",
 });
 
-app.get('/restaurants', (req, res) => {
+app.listen(3001, () => {
+	console.log("server is running on port 3001");
+  });
 
-	con.query("SELECT * FROM restaurants;", (err, result) => {
-		if (err) {
-			console.log(err));
-		} else {
-			res.send(result);
-		}
+app.get("/restaurant", (req, res) => {
+	db.query("SELECT * FROM Restaurants", (err, result) => {
+	  if (err) {
+		console.log(err);
+	  } else {
+		res.send(result);
+	  }
 	});
-});
-
-
+  });
 
 
 /*

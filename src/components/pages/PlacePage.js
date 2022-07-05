@@ -2,10 +2,21 @@ import React from "react";
 import "../../style/Placepage.css";
 import { GoLocation } from 'react-icons/go';
 import { BsTelephoneFill } from 'react-icons/bs';
+import { useState } from "react";
+import Axios from "axios";
+
 function PlacePage() {
+    const [restaurantInfo, setRestaurantInfo] = useState([]);
+    const getRestaurantInfo = () => {
+      Axios.get("http://localhost:3001/restaurant").then((response) => {
+        //setRestaurantInfo(response.data);
+        console.log(response.data)
+      });
+    };
     return (
         <div className="container mb-5 py-5 ">
             <h1 className="mb-3 text-center">Nome del posto</h1>
+            <button onClick={getRestaurantInfo}></button>
             <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
