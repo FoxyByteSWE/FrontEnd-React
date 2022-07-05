@@ -1,37 +1,36 @@
 import React from "react";
 import "../../style/Homepage.css";
 import RestaurantCard from "../RestaurantCard";
+import { useState } from "react";
+import Axios from "axios";
 
 function Home() {
+    const [restaurantInfo, setRestaurantInfo] = useState([]);
+
+    Axios.get("http://localhost:3001/top-restaurants").then((response) => {
+        setRestaurantInfo(response.data);
+    });
+
     return(
         <div className="container my-5">
             <div className="home-content">
                 <div className="container-consigliati">
                     <h2 className="page-title text-center mb-4">Risitorati consigliati</h2>
                     <div className="row py-3 mt-4">
-                        <div className="col-sm my-3">
-                            <RestaurantCard/>
-                        </div>
-                        <div className="col-sm my-3">
-                            <RestaurantCard/>
-                        </div>
-                        <div className="col-sm my-3">
-                            <RestaurantCard/>
-                        </div>
-                    </div>
-                </div>
-                <div className="container-consigliati">
-                    <h2 className="page-title text-center mb-4">I migliori ristoranti in zona</h2>
-                    <div className="row py-3">
-                        <div className="col-sm my-3">
-                            <RestaurantCard/>
-                        </div>
-                        <div className="col-sm my-3">
-                            <RestaurantCard/>
-                        </div>
-                        <div className="col-sm my-3">
-                            <RestaurantCard/>
-                        </div>
+
+                        {
+                            restaurantInfo.map((restaurant, index) => {
+                                const nome=restaurant.Nome;
+                                const categoria=restaurant.Categoria;
+                                const indirizzo=restaurant.Indirizzo;
+                                return (   
+                                    <div className="col-sm my-3" key={index}>
+                                        <RestaurantCard nome={nome} categoria={categoria} indirizzo={indirizzo}/>
+                                    </div>
+                                )
+                                })
+                        }
+
                     </div>
                 </div>
             </div>

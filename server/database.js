@@ -27,6 +27,16 @@ app.get("/restaurant", (req, res) => {
 	});
   });
 
+app.get("/top-restaurants", (req, res) => {
+	db.query("SELECT * FROM Restaurants ORDER BY Ranking DESC LIMIT 3", (err, result) => {
+	  if (err) {
+		console.log(err);
+	  } else {
+		res.send(result);
+	  }
+	});
+  });
+
 
 /*
 function getDataFromDB(callback) {
