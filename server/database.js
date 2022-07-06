@@ -17,7 +17,7 @@ app.listen(3001, () => {
 	console.log("server is running on port 3001");
   });
 
-app.get("/restaurant", (req, res) => {
+app.get("/restaurants", (req, res) => {
 	db.query("SELECT * FROM Restaurants", (err, result) => {
 	  if (err) {
 		console.log(err);
