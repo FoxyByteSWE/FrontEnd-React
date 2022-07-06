@@ -45,7 +45,7 @@ function Navbar({placeholder, restaurantes}) {
                     </div>
                 </div>
                 {filteredData.length !== 0 &&
-                <div className="data-result text-center d-flex flex-column shadow">
+                <div className="data-result d-flex flex-column shadow">
                     {filteredData.slice(0,15).map((value, key) => {
                         console.log(value)
                         return <Link to="/place-page" state={{value}} key={key} className="data-item" target="_blank">{value.Nome}</Link>

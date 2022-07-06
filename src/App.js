@@ -19,7 +19,7 @@ function App() {
   Axios.get("http://localhost:3001/restaurants").then((response) => {
     setRestaurantes(response.data);
   });
-  
+
   return (
     <Router>
       <div className="App">
