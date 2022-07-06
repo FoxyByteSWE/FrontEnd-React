@@ -20,12 +20,9 @@ function Home() {
 
                         {
                             restaurantInfo.map((restaurant, index) => {
-                                const nome=restaurant.Nome;
-                                const categoria=restaurant.Categoria;
-                                const indirizzo=restaurant.Indirizzo;
                                 return (   
                                     <div className="col-sm my-3" key={index}>
-                                        <RestaurantCard nome={nome} categoria={categoria} indirizzo={indirizzo}/>
+                                        <RestaurantCard restaurant={restaurant}/>
                                     </div>
                                 )
                                 })

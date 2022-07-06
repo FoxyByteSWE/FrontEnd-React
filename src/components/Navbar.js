@@ -8,25 +8,7 @@ import mainLogo from "../Logo/Logo.png";
 import { useState } from "react";
 
 function Navbar({placeholder, restaurantes}) {
-    /*const path = useLocation().pathname;
-    const navRef = useRef();
-    const showNavbar = () => {
-        navRef.current.classList.toggle("responsive_nav");
-    }
-    const [restaurantes, setRestaurantes] = useState([]);
-    const [searchTerm, setSearchTerm] = useState('');
 
-    Axios.get("http://localhost:3001/restaurants").then((response) => {
-        setRestaurantes(response.data);
-    });
-    const searchRestaurantes = async (name) => {
-        const response = await fetch(`${restaurantes}&s=${name}`);
-        const data = await response.json();
-    
-        setRestaurantes(data.Search);
-        console.log(setRestaurantes)
-    }
-    */
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const handleFilter = (event) => {
@@ -65,7 +47,8 @@ function Navbar({placeholder, restaurantes}) {
                 {filteredData.length !== 0 &&
                 <div className="data-result text-center d-flex flex-column shadow">
                     {filteredData.slice(0,15).map((value, key) => {
-                        return <Link to="/place-page" key={key} className="data-item"  target="_blank">{value.Nome}</Link>
+                        console.log(value)
+                        return <Link to="/place-page" state={{value}} key={key} className="data-item" target="_blank">{value.Nome}</Link>
                     })}
                 </div>      
                 }
