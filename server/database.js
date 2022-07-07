@@ -6,11 +6,11 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
-const db = mysql.createConnection({
+const db_restaurants = mysql.createConnection({
   user: "root",
   host: "localhost",
   password: "root",
-  database: "Restaurants",
+  database: "MichelinSocial",
 });
 
 app.listen(3001, () => {
@@ -18,7 +18,7 @@ app.listen(3001, () => {
   });
 
 app.get("/restaurants", (req, res) => {
-	db.query("SELECT * FROM Restaurants", (err, result) => {
+	db_restaurants.query("SELECT * FROM Restaurants", (err, result) => {
 	  if (err) {
 		console.log(err);
 	  } else {
@@ -28,7 +28,7 @@ app.get("/restaurants", (req, res) => {
   });
 
 app.get("/top-restaurants", (req, res) => {
-	db.query("SELECT * FROM Restaurants ORDER BY Ranking DESC LIMIT 3", (err, result) => {
+	db_restaurants.query("SELECT * FROM Restaurants ORDER BY Ranking DESC LIMIT 3", (err, result) => {
 	  if (err) {
 		console.log(err);
 	  } else {
