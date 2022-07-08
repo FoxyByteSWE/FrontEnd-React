@@ -1,5 +1,5 @@
 .card-favs{
-    height: 28em;
+    height: 30em;
     width:20em;
 }
 
@@ -10,4 +10,15 @@
 
 .indirizzo-card{
     font-size: smaller;
+    height: 40px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.card-img-top {
+    height: 14em;
+}
+
+.indirizzo-card::-webkit-scrollbar{
+    display: none;
 }

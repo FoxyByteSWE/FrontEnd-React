@@ -1,0 +1,8 @@
+.input-error{
+    border-color: red;
+}
+
+.error-msg-validation{
+    color: red;
+    font-size: smaller;
+}

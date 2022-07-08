@@ -1,7 +1,6 @@
-import React from "react";
+import { React, useState } from "react";
 import "../../style/Homepage.css";
 import RestaurantCard from "../RestaurantCard";
-import { useState } from "react";
 import Axios from "axios";
 
 function Home() {

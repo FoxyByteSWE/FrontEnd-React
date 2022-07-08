@@ -19,7 +19,7 @@
 .data-result{
     background-color: white;
     width: 92%;
-    height: 200px;
+    height: fit-content;
     overflow: hidden;
     overflow-y: auto;
     z-index: 2;

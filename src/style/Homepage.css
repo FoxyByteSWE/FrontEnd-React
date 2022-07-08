@@ -1,3 +1,7 @@
+body {
+    height: 100%;
+}
+
 .search-home{
     width:80%;
     border: 1px solid rgb(115, 117, 117);

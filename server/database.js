@@ -10,7 +10,7 @@ const db = mysql.createConnection({
   user: "root",
   host: "localhost",
   password: "root",
-  database: "Restaurants",
+  database: "michelinsocial",
 });
 
 app.listen(3001, () => {
@@ -37,50 +37,39 @@ app.get("/top-restaurants", (req, res) => {
 	});
   });
 
+app.post('/register', (req, res) => {
 
-/*
-function getDataFromDB(callback) {
-	var ret;
+	const Email = req.body.Email;
+	const Username = req.body.Username;
+	const Password = req.body.Password;
 
-	var mysql = require('mysql');
-
-	var con = mysql.createConnection({
-		host: "localhost",
-		user: "root",
-		password: "root",
-		database: "Restaurants"
-	});
-
-	con.connect(function(err) {
-		if (err) throw err;
-		console.log("Connected!");
-	});
-
-	sql_query = "SELECT * FROM Restaurants";
-
-	con.query(sql_query, function (err, result, fields) {
-		if (err) throw err;
-		restaurants = [];
-		for (let i = 0; i < result.length; ++i) {
-			restaurant = new Map();
-			restaurant.set("Codice_pk", result[i].Codice_pk);
-			restaurant.set("Nome", result[i].Nome);
-			restaurant.set("Categoria", result[i].Categoria);
-			restaurant.set("Indirizzo", result[i].Indirizzo);
-			restaurant.set("Sito", result[i].Sito);
-			restaurant.set("Telefono", result[i].Telefono);
-			restaurant.set("Ranking", result[i].Ranking);
-			restaurants.push(restaurant)
+	db.query(
+		"INSERT INTO Users (Email, Username, Password) VALUES (?,?,?)", 
+		[Email, Username, Password],
+		(err, result) => {
+			console.log(err);
 		}
-		return callback(restaurants);
-	});
-}
+	);
+})
 
-var data = '';
+app.post('/login', (req, res) => {
 
-getDataFromDB(function(result) {
-	data = result;
+	const Username = req.body.Username;
+	const Password = req.body.Password;
 
-	console.log(data);
-});
-*/
+	db.query(
+		"SELECT * FROM Users WHERE Username = ? AND Password = ?", 
+		[Username, Password],
+		(err, result) => {
+			if (err) {
+				red.send({err: err})
+			}
+			
+			if (result.length > 0) {
+				res.send(result);
+			} else {
+				res.send({ message: "Wrong username or password"});
+			}			
+		}
+	);
+})

@@ -1,11 +1,10 @@
-import React from "react";
+import { React, useState } from "react";
 import {Link} from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiHeart } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
 import "../style/Search.css";
 import mainLogo from "../Logo/Logo.png";
-import { useState } from "react";
 
 function Navbar({placeholder, restaurantes}) {
 
