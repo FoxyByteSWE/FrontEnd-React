@@ -10,7 +10,7 @@ const db_restaurants = mysql.createConnection({
   user: "root",
   host: "localhost",
   password: "root",
-  database: "michelinsocial",
+  database: "MichelinSocial",
 });
 
 app.listen(3001, () => {
