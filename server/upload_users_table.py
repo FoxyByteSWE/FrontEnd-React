@@ -13,9 +13,9 @@ BUCKET_NAME = "foxybyteswe"
 def createUsersDatabase():
 	db = DBConnection()
 
-	db.createDatabaseConnection("MichelinSocial")
+	db.createDatabaseConnection("michelinsocial")
 
-	query = """CREATE TABLE IF NOT EXISTS Users(
+	query = """CREATE TABLE IF NOT EXISTS users(
 		Email VARCHAR(50) PRIMARY KEY,
 		Username VARCHAR(20) NOT NULL,
 		Password VARCHAR(100) NOT NULL,
@@ -29,11 +29,11 @@ def createUsersDatabase():
 	password = 'TestPassword'
 	password = '"' + hashlib.sha256(password.encode('utf-8')).hexdigest() + '", '
 	admin = '"0"'
-	query = "INSERT INTO Users VALUES (" + mail + name + password + admin + ');'
+	query = "INSERT INTO users VALUES (" + mail + name + password + admin + ');'
 
 	db.executeQuery(query)
 
-	db.uploadDB("MichelinSocial", (str(sys.path[0]))+"/../../RankingService/")
+	db.uploadDB("michelinsocial", (str(sys.path[0]))+"/../../RankingService/")
 
 def main():
 	createUsersDatabase()
