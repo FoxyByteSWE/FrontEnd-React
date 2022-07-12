@@ -1,5 +1,5 @@
 import { React, useContext, useState, useRef } from "react";
-import {Link} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
@@ -31,6 +31,11 @@ function Navbar({placeholder, restaurantes}) {
       };
 
     const {user, setUser} = useContext(UserContext);
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        setUser(null);
+        navigate('/');
+    }
 
     return(
         <div className="nav-bar d-flex flex-row justify-content-between">
@@ -63,7 +68,7 @@ function Navbar({placeholder, restaurantes}) {
                                 <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
                             </li>
                             <li>
-                                <a onClick={()=>setUser(null)} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
+                                <a onClick={handleLogOut} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
                             </li>
                         </>
                     ):(

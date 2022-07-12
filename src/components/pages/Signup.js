@@ -1,6 +1,7 @@
 import {React, useState, useRef } from "react";
 import { FiUserPlus } from 'react-icons/fi';
 import Axios from 'axios';
+import { useNavigate } from "react-router-dom";
 //import { useFormik } from "formik";
 import "../../style/Signup.css";
 //import * as yup from "yup";
@@ -15,6 +16,8 @@ const Signup = () => {
     const emailRef= useRef(null);
     const passwordRef= useRef(null);
 
+    const navigate = useNavigate();
+
     const signup = () => {
         Axios.post('http://localhost:3001/register', {
             Email: emailReg,
@@ -27,6 +30,7 @@ const Signup = () => {
         usernameRef.current.value = '';
         emailRef.current.value = '';
         passwordRef.current.value = '';
+        navigate('/');
     };
 /*
     const userSchema = yup.object().shape({

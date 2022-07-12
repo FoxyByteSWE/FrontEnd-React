@@ -1,5 +1,5 @@
 import {React, useState, useRef, useContext} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 import Axios from 'axios';
 import { UserContext } from "../UserContext";
@@ -12,6 +12,8 @@ function Login() {
 
     const usernameRef= useRef(null);
     const passwordRef=useRef(null);
+
+    const navigate = useNavigate();
 
     const login = () => {
         Axios.post('http://localhost:3001/login', {
@@ -27,6 +29,8 @@ function Login() {
         });
         usernameRef.current.value = '';
         passwordRef.current.value = '';
+
+        navigate('/');
     };
    
     return(
