@@ -24,7 +24,6 @@ function Login() {
             } else {
                 setUser(response.data);
             }
-            console.log(user.Email)
         });
         usernameRef.current.value = '';
         passwordRef.current.value = '';

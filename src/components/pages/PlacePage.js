@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 function PlacePage() {
     const arrayRest= useLocation();
     const data= arrayRest.state.restaurant;
+    
     return (
         <div className="container mb-5 py-5 ">
             <h1 className="mb-3 text-center">{data.Nome}</h1>

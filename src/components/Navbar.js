@@ -48,9 +48,8 @@ function Navbar({placeholder, restaurantes}) {
                 {filteredData.length !== 0 &&
                 <div className="data-result d-flex flex-column shadow">
                     {   
-                        filteredData.slice(0,15).map((value, key) => {
-                        return <Link to="/place-page" state={{value}} key={key} className="data-item" target="_blank">{value.Nome}</Link>
-                        
+                        filteredData.slice(0,15).map((restaurant, key) => {
+                        return <Link to="/place-page" state={{restaurant}} key={key} className="data-item" >{restaurant.Nome}</Link>              
                     })}
                 </div>      
                 }

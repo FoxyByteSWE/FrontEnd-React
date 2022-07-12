@@ -1,30 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import "../../style/Userpage.css";
 import axios from "axios";
+import { UserContext } from "../UserContext";
 
 function UserPage() {
-/*    let { id } = useParams();
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-
-    useEffect(()=> {
-        axios.get(`/user-info/${id}`).then((response) => {
-            setUsername(response.data.Username);
-            setEmail(response.data.Email);
-        })
-    }, []);
-    console.log(id);*/
-   /* const getCurrentUser = async function () {
-        const currentUser = await Parse.User.currentAsync();
-        if (currentUser !== null) {
-          Alert.alert(
-            'Success!',
-            `${currentUser.get('username')} is the current user!`,
-          );
-        }
-        return currentUser;
-      };*/
+    const {user, setUser} = useContext(UserContext);
 
 
     return (
