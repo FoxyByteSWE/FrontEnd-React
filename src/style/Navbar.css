@@ -10,7 +10,6 @@
 
 .nav-links{
     list-style: none;
-    width: 13em;
     margin-top: 0;
     margin-bottom: 0;
     font-size: small;
@@ -19,6 +18,7 @@
 .nav-bar a {
     color: white;
     text-decoration: none;
+    margin-left: 25px;
 }
 
 .nav-links a:hover {

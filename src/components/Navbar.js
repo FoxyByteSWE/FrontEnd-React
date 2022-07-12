@@ -1,13 +1,13 @@
-import { React, useState } from "react";
+import { React, useContext, useState } from "react";
 import {Link} from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiHeart } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
 import "../style/Search.css";
 import mainLogo from "../Logo/Logo.png";
+import { UserContext } from "../components/UserContext";
 
 function Navbar({placeholder, restaurantes}) {
-
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const handleFilter = (event) => {
@@ -29,6 +29,8 @@ function Navbar({placeholder, restaurantes}) {
         setWordEntered("");
       };
 
+    const {user, setUser} = useContext(UserContext);
+
     return(
         <div className="nav-bar d-flex flex-row justify-content-between">
             <Link to="/" className="logo"><img src={mainLogo} alt="Logo" /></Link>
@@ -45,14 +47,17 @@ function Navbar({placeholder, restaurantes}) {
                 </div>
                 {filteredData.length !== 0 &&
                 <div className="data-result d-flex flex-column shadow">
-                    {filteredData.slice(0,15).map((value, key) => {
-                        console.log(value)
+                    {   
+                        filteredData.slice(0,15).map((value, key) => {
                         return <Link to="/place-page" state={{value}} key={key} className="data-item" target="_blank">{value.Nome}</Link>
+                        
                     })}
                 </div>      
                 }
             </div>    
-                <ul className="nav-links d-flex flex-row justify-content-between">
+                <ul className="nav-links d-flex flex-row">
+                    {user? (
+                        <>
                     <li>
                         <Link to="/favourites" className="text-decoration-none"><FiHeart className="font-nav" size="25"/></Link>
                     </li>
@@ -60,14 +65,20 @@ function Navbar({placeholder, restaurantes}) {
                         <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
                     </li>
                     <li>
-                        <Link to="/favourites" className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></Link>
+                        <a onClick={()=>setUser(null)} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
                     </li>
+                    </>
+                    ):(
+                        <>
                     <li>
                         <Link to="/login" className="text-decoration-none"><FiLogIn className="font-nav" size="25"/></Link>
                     </li>
                     <li>
                         <Link to="/sign-up" className="text-decoration-none"><FiUserPlus className="font-nav" size="25"/></Link>
-                    </li>                   
+                    </li>
+                    </>
+                    )
+                    }                  
                 </ul>
         </div>
     );

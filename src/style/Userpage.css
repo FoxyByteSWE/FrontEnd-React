@@ -39,6 +39,7 @@
 .edit-user-info{
     border:none;
     font-weight: 500;
+    color: gray;
 }
 
 .edit-user-info:focus{

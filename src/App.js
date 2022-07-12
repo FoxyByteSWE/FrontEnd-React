@@ -8,10 +8,10 @@ import Signup from "./components/pages/Signup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Axios from "axios";
-import { Link } from 'react-router-dom';
 import ".//style/App.css";
+import { UserContext } from "./components/UserContext";
 
 
 function App() {
@@ -20,20 +20,26 @@ function App() {
     setRestaurantes(response.data);
   });
 
+const [user, setUser] = useState(null);
+const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
+
   return (
     <Router>
       <div className="App">
-        <Navbar placeholder="Search places" restaurantes={restaurantes}/>
-        <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/login"  element={<Login/>} />
-          <Route path="/sign-up" element={<Signup/>}/>
-          <Route path="/place-page" element={<PlacePage/>}/>
-          <Route path="/favourites" element={<Favourites/>}/>
-          <Route path="/user-page" element={<Userpage/>}/>
-          <Route path="*" element={<ErrorPage/>}/>
-        </Routes>
-
+        <UserContext.Provider value={userValue}>
+          <Navbar placeholder="Search places" restaurantes={restaurantes}/>
+        </UserContext.Provider>
+        <UserContext.Provider value={userValue}>
+          <Routes>
+              <Route path="/" element={<Home/>} />
+              <Route path="/login"  element={<Login/>} />
+              <Route path="/sign-up" element={<Signup/>}/>
+              <Route path="/place-page" element={<PlacePage/>}/>
+              <Route path="/favourites" element={<Favourites/>}/>
+              <Route path="/user-page/" element={<Userpage/>}/>
+              <Route path="*" element={<ErrorPage/>}/>
+          </Routes>
+        </UserContext.Provider>
         <Footer/>
       </div>
     </Router>

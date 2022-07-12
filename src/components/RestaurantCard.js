@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import "../style/RestaurantCard.css";
 
 const RestaurantCard = ({restaurant}) => {
-    const domRestaurant = restaurant.Nome.toLowerCase();
     return(
         <div className="card-favs m-auto border-0 shadow">
             <img className="card-img-top" src={restaurant.Immagine} alt="Card image cap" />
