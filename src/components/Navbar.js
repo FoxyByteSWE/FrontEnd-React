@@ -1,6 +1,6 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useState, useRef } from "react";
 import {Link} from 'react-router-dom';
-import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiHeart } from 'react-icons/fi';
+import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
 import "../style/Search.css";
@@ -24,9 +24,10 @@ function Navbar({placeholder, restaurantes}) {
         
     };
 
+    const searchWord=useRef(null);
     const clearInput = () => {
         setFilteredData([]);
-        setWordEntered("");
+        searchWord.current.value = '';
       };
 
     const {user, setUser} = useContext(UserContext);
@@ -36,9 +37,9 @@ function Navbar({placeholder, restaurantes}) {
             <Link to="/" className="logo"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
                 <div className="d-flex flex-row">
-                    <input placeholder= {placeholder} className= 'search-bar form-control me-2' onChange={handleFilter} />
+                    <input placeholder= {placeholder} className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
                     <div className="search-icon">
-                        {filteredData.length === 0 ? (
+                        {wordEntered.length === 0 ? (
                             <FiSearch size="25"/>
                         ) : (
                             <AiOutlineClose size="25" id="clearBtn" onClick={clearInput} />
@@ -47,36 +48,34 @@ function Navbar({placeholder, restaurantes}) {
                 </div>
                 {filteredData.length !== 0 &&
                 <div className="data-result d-flex flex-column shadow">
-                    {   
+                    { 
                         filteredData.slice(0,15).map((restaurant, key) => {
-                        return <Link to="/place-page" state={{restaurant}} key={key} className="data-item" >{restaurant.Nome}</Link>              
+                        return <Link to="/place-page" state={{restaurant}} key={key} className="data-item" onClick={clearInput}>{restaurant.Nome}</Link>
+                                     
                     })}
                 </div>      
                 }
             </div>    
-                <ul className="nav-links d-flex flex-row">
+                <ul className="nav-links d-flex flex-row justify-content-between">
                     {user? (
                         <>
-                    <li>
-                        <Link to="/favourites" className="text-decoration-none"><FiHeart className="font-nav" size="25"/></Link>
-                    </li>
-                    <li>
-                        <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
-                    </li>
-                    <li>
-                        <a onClick={()=>setUser(null)} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
-                    </li>
-                    </>
+                            <li>
+                                <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
+                            </li>
+                            <li>
+                                <a onClick={()=>setUser(null)} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
+                            </li>
+                        </>
                     ):(
                         <>
-                    <li>
-                        <Link to="/login" className="text-decoration-none"><FiLogIn className="font-nav" size="25"/></Link>
-                    </li>
-                    <li>
-                        <Link to="/sign-up" className="text-decoration-none"><FiUserPlus className="font-nav" size="25"/></Link>
-                    </li>
-                    </>
-                    )
+                            <li>
+                                <Link to="/login" className="text-decoration-none"><FiLogIn className="font-nav" size="25"/></Link>
+                            </li>
+                            <li>
+                                <Link to="/sign-up" className="text-decoration-none"><FiUserPlus className="font-nav" size="25"/></Link>
+                            </li>
+                        </>
+                        )
                     }                  
                 </ul>
         </div>

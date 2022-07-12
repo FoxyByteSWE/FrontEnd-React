@@ -6,7 +6,7 @@ import { UserContext } from "../UserContext";
 
 function UserPage() {
     const {user, setUser} = useContext(UserContext);
-
+    console.log(user[0])
 
     return (
         <div className="container my-5">
@@ -15,7 +15,7 @@ function UserPage() {
                 <div className="user-card-left">
                     <div className="user-card-in-left d-flex flex-column align-items-center">
                         <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image"/>
-                        <h6>username</h6>
+                        <h6>{user[0].Username}</h6>
                         <button type="button" className="btn btn-light">Edit picture</button>
                     </div>
                 </div>
@@ -25,12 +25,12 @@ function UserPage() {
                         <div className="user-info">
                             <p className="mt-3">Name</p>
                             <div className="mb-4 d-flex flex-row justify-content-between b-b-default">
-                                <input className="edit-user-info" placeholder="{username}" ></input>
+                                <input className="edit-user-info" placeholder={user[0].Username} ></input>
                                 <button type="button" className="btn btn-primary">Edit</button>
                             </div>
                             <p>Email</p>
                             <div className="d-flex flex-row justify-content-between">
-                                <p className="edit-user-info">mail</p>
+                                <p className="edit-user-info">{user[0].Email}</p>
                             </div>
                         </div>
                     </div>
