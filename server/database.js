@@ -74,6 +74,38 @@ app.post('/login', (req, res) => {
 		}
 	);
 })
+
+app.put('/update', (req, res) => {
+	const Username = req.body.Username;
+	const Email = req.body.Email;
+	db_restaurants.query(
+		"UPDATE users SET Username = ? WHERE Email = ?", 
+		[Username, Email],
+		(err, result) => {
+			if(err) {
+				res.send({err: err});
+			} else {
+				res.send(result);
+			}		
+		}
+	);
+})
+
+app.put('/upload', (req, res) => {
+	const Foto = req.body.Foto;
+	const Email = req.body.Email;
+	db_restaurants.query(
+		"UPDATE users SET Foto = ? WHERE Email = ?", 
+		[Foto, Email],
+		(err, result) => {
+			if(err) {
+				res.send({err: err});
+			} else {
+				res.send(result);
+			}		
+		}
+	);
+})
 /*
 app.get("/user-info", async (req, res) => {
 	const id = req.params.id;
