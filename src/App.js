@@ -20,8 +20,8 @@ function App() {
     setRestaurantes(response.data);
   });
 
-const [user, setUser] = useState(null);
-const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
+  const [user, setUser] = useState(null);
+  const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
 
   return (
     <Router>
@@ -34,9 +34,9 @@ const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
               <Route path="/" element={<Home/>} />
               <Route path="/login"  element={<Login/>} />
               <Route path="/sign-up" element={<Signup/>}/>
-              <Route path="/place-page" element={<PlacePage/>}/>
+              <Route path="/place-page/:path" element={<PlacePage /*changePath={path=>setPath(path)}*/ /> } />
               <Route path="/favourites" element={<Favourites/>}/>
-              <Route path="/user-page/" element={<Userpage/>}/>
+              <Route path="/user-page" element={<Userpage />}/>
               <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </UserContext.Provider>

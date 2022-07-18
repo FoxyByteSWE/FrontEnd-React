@@ -26,7 +26,7 @@ app.get("/restaurants", (req, res) => {
 		res.send(result);
 	  }
 	});
-  });
+});
 
 app.get("/top-restaurants", (req, res) => {
 	db_restaurants.query("SELECT * FROM restaurants ORDER BY Ranking DESC LIMIT 3", (err, result) => {
@@ -36,7 +36,7 @@ app.get("/top-restaurants", (req, res) => {
 		res.send(result);
 	  }
 	});
-  });
+});
 
 app.post('/register', (req, res) => {
 
@@ -51,7 +51,7 @@ app.post('/register', (req, res) => {
 			console.log(err);
 		}
 	);
-})
+});
 
 app.post('/login', (req, res) => {
 
@@ -73,7 +73,7 @@ app.post('/login', (req, res) => {
 			}			
 		}
 	);
-})
+});
 
 app.put('/update', (req, res) => {
 	const Username = req.body.Username;
@@ -89,7 +89,7 @@ app.put('/update', (req, res) => {
 			}		
 		}
 	);
-})
+});
 
 app.put('/upload', (req, res) => {
 	const Foto = req.body.Foto;
@@ -105,13 +105,15 @@ app.put('/upload', (req, res) => {
 			}		
 		}
 	);
-})
-/*
-app.get("/user-info", async (req, res) => {
-	const id = req.params.id;
-	const userInfo = await users.findByPk(id, {
-		attributes: {exclude: ["password"] }
-	});
+});
 
-	res.send(userInfo);
-})*/
+/*
+app.get('/upload', (req, res) => {
+	res.render("upload");
+});
+
+app.post('/upload', (req, res) => {
+	res.render("Image uploaded");
+});
+*/
+

@@ -9,9 +9,6 @@ function UserPage() {
     const emailEdit = user[0].Email;
     const [usernameEdit, setUsernameEdit] = useState(user[0].Username);
     const [imageUpload, setImageUpload] = useState(null);
-   /* const [userObj, setUserObj] = useState ([
-        {Email: emailEdit, Username: usernameEdit, Foto: "img"},
-    ]);*/
 
     const update = (emailEdit) => {
         Axios.put('http://localhost:3001/update', {
@@ -20,7 +17,7 @@ function UserPage() {
         }).then((response)=> {
             console.log(usernameEdit);
             const userObj= [
-                {Email: emailEdit, Username: usernameEdit, Foto: "img"},
+                {Email: emailEdit, Username: usernameEdit, Foto: imageUpload},
             ];
             setUser(userObj);
         });
@@ -36,21 +33,22 @@ function UserPage() {
     };
     //console.log(emailEdit)
     //console.log(usernameEdit);
-    const uploadImage = () => {
+    /*const uploadImage = () => {
         if (imageUpload== null) return;
         upload(emailEdit);
 
-    };
+    };*/
+    //console.log(imageUpload.name);
     return (
         <div className="container my-5">
             <h2 className="text-center">Your Page</h2>
             <div className="user-card d-flex flex-row">
                 <div className="user-card-left">
                     <div className="user-card-in-left d-flex flex-column align-items-center">
-                        <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image"/>
+                        <img src={user[0].Foto === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" : user[0].Foto} className="img-radius" />
                         <h6>{user[0].Username}</h6>
                         <input type="file" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
-                        <button onClick={uploadImage} className="btn btn-light">Change Image</button>
+                        <button type="file" className="btn btn-light" onClick={upload(emailEdit)}>Change Image</button>
                     </div>
                 </div>
                 <div className="user-card-info">

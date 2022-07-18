@@ -55,7 +55,8 @@ function Navbar({placeholder, restaurantes}) {
                 <div className="data-result d-flex flex-column shadow">
                     { 
                         filteredData.slice(0,15).map((restaurant, key) => {
-                        return <Link to="/place-page" state={{restaurant}} key={key} className="data-item" onClick={clearInput}>{restaurant.Nome}</Link>
+                            const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
+                            return <Link to={`/place-page/${path}`} state={{restaurant}} key={key} className="data-item" onClick={clearInput}>{restaurant.Nome}</Link>
                                      
                     })}
                 </div>      
