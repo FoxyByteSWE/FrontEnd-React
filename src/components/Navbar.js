@@ -31,11 +31,13 @@ function Navbar({placeholder, restaurantes}) {
       };
 
     const {user, setUser} = useContext(UserContext);
+    const username = (user[0].Username).toLowerCase();
     const navigate = useNavigate();
     const handleLogOut = () => {
         setUser(null);
         navigate('/');
     }
+    console.log(user)
 
     return(
         <div className="nav-bar d-flex flex-row justify-content-between">
@@ -66,7 +68,7 @@ function Navbar({placeholder, restaurantes}) {
                     {user? (
                         <>
                             <li>
-                                <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
+                                <Link to={`/user-page/${username}`} className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
                             </li>
                             <li>
                                 <a onClick={handleLogOut} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
@@ -89,3 +91,6 @@ function Navbar({placeholder, restaurantes}) {
 }
 
 export default Navbar;
+/*
+{`/user-page/${username}`}
+*/
