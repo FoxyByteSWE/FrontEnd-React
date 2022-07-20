@@ -15,14 +15,13 @@ function UserPage() {
             Email: emailEdit,
             Username: usernameEdit,
         }).then((response)=> {
-            console.log(usernameEdit);
             const userObj= [
                 {Email: emailEdit, Username: usernameEdit, Foto: imageUpload},
             ];
             setUser(userObj);
         });
     };
-
+/*
     const upload = (emailEdit) => {
         Axios.put('http://localhost:3001/upload', {
             Email: emailEdit,
@@ -31,14 +30,9 @@ function UserPage() {
             console.log(response.config);
         });
     };
-    //console.log(emailEdit)
-    //console.log(usernameEdit);
-    /*const uploadImage = () => {
-        if (imageUpload== null) return;
-        upload(emailEdit);
 
-    };*/
-    //console.log(imageUpload.name);
+    <input type="file" name= "Foto" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}} />
+*/
     return (
         <div className="container my-5">
             <h2 className="text-center">Your Page</h2>
@@ -47,8 +41,9 @@ function UserPage() {
                     <div className="user-card-in-left d-flex flex-column align-items-center">
                         <img src={user[0].Foto === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" : user[0].Foto} className="img-radius" />
                         <h6>{user[0].Username}</h6>
-                        <input type="file" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}}/>
-                        <button type="file" className="btn btn-light" onClick={upload(emailEdit)}>Change Image</button>
+                        <form method="POST" action="/upload" encType="multipart/form-data" className="text-center">
+                            <button type="submit" className="btn btn-light">Change Image</button>
+                        </form>
                     </div>
                 </div>
                 <div className="user-card-info">
@@ -67,11 +62,7 @@ function UserPage() {
                         </div>
                     </div>
                 </div>
-
             </div>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
-            
-
         </div>
     );
 }

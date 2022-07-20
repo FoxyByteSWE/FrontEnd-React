@@ -2,7 +2,23 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
+//const multer = require ('multer');
+//const path = require ('path');
 const { useResolvedPath } = require("react-router");
+const { Controller } = require("react-hook-form");
+/*
+const storage = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, 'image')
+	},
+	filename: (req, file, cb) =>{
+		console.log(file);
+		cb(null, Date.now() + path.extname(file.originalname));
+	}
+});
+
+const upload = multer({ storage: storage });
+*/
 
 app.use(cors());
 app.use(express.json());
@@ -91,7 +107,8 @@ app.put('/update', (req, res) => {
 	);
 });
 
-app.put('/upload', (req, res) => {
+/*
+app.put('/upload', upload.single('Foto'), (req, res) => {
 	const Foto = req.body.Foto;
 	const Email = req.body.Email;
 	db_restaurants.query(
@@ -105,15 +122,5 @@ app.put('/upload', (req, res) => {
 			}		
 		}
 	);
-});
-
-/*
-app.get('/upload', (req, res) => {
-	res.render("upload");
-});
-
-app.post('/upload', (req, res) => {
-	res.render("Image uploaded");
-});
-*/
+});*/
 
