@@ -28,6 +28,7 @@ function Navbar({placeholder, restaurantes}) {
     const clearInput = () => {
         setFilteredData([]);
         searchWord.current.value = '';
+        setWordEntered("");
       };
 
     const {user, setUser} = useContext(UserContext);

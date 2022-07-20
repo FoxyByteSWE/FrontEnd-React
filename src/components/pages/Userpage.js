@@ -39,9 +39,9 @@ function UserPage() {
             <div className="user-card d-flex flex-row">
                 <div className="user-card-left">
                     <div className="user-card-in-left d-flex flex-column align-items-center">
-                        <img src={user[0].Foto === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" : user[0].Foto} className="img-radius" />
+                        <img src={user[0].Foto === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" : user[0].Foto} className="mb-3" />
                         <h6>{user[0].Username}</h6>
-                        <form method="POST" action="/upload" encType="multipart/form-data" className="text-center">
+                        <form method="POST" action="/upload" encType="multipart/form-data" className="text-center my-3">
                             <button type="submit" className="btn btn-light">Change Image</button>
                         </form>
                     </div>
