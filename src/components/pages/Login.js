@@ -10,10 +10,8 @@ function Login() {
     const [passwordLog, setPasswordLog] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
     const {user, setUser} = useContext(UserContext);
-
     const usernameRef= useRef(null);
     const passwordRef=useRef(null);
-
     const navigate = useNavigate();
 
     const login = () => {

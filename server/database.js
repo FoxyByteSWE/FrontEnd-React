@@ -6,6 +6,8 @@ const cors = require("cors");
 //const path = require ('path');
 const { useResolvedPath } = require("react-router");
 const { Controller } = require("react-hook-form");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 /*
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -59,14 +61,19 @@ app.post('/register', (req, res) => {
 	const Email = req.body.Email;
 	const Username = req.body.Username;
 	const Password = req.body.Password;
+	bcrypt.hash(Password, saltRounds, (err, hash)=> {
+			if(err) {
+				console.log(err)
+			}
 
-	db_restaurants.query(
-		"INSERT INTO users (Email, Username, Password) VALUES (?,?,?)", 
-		[Email, Username, Password],
-		(err, result) => {
-			console.log(err);
-		}
-	);
+		db_restaurants.query(
+			"INSERT INTO users (Email, Username, Password) VALUES (?,?,?)", 
+			[Email, Username, hash],
+			(err, result) => {
+				console.log(err);
+			}
+		);
+	});
 });
 
 app.post('/login', (req, res) => {
@@ -75,17 +82,22 @@ app.post('/login', (req, res) => {
 	const Password = req.body.Password;
 
 	db_restaurants.query(
-		"SELECT * FROM users WHERE Username = ? AND Password = ?", 
-		[Username, Password],
+		"SELECT * FROM users WHERE Username = ?;", 
+		Username,
 		(err, result) => {
 			if (err) {
 				res.send({err: err})
 			}
-			
 			if (result.length > 0) {
-				res.send(result);
+				bcrypt.compare(Password, result[0].Password, (error, response)=>{
+					if(response) {
+						res.send(result)
+					} else {
+						res.send({ message: "Wrong username or password"});
+					}
+				});
 			} else {
-				res.send({ message: "Wrong username or password"});
+				res.send({ message: "User doesn't exist"});
 			}			
 		}
 	);
