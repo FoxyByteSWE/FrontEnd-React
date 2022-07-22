@@ -1,4 +1,5 @@
-import {React, useState, useRef, useContext} from "react";
+import React from "react";
+import {useState, useRef, useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 import Axios from 'axios';
@@ -13,13 +14,11 @@ function Login() {
     const usernameRef= useRef(null);
     const passwordRef=useRef(null);
     const navigate = useNavigate();
-
     const login = () => {
         Axios.post('http://localhost:3001/login', {
             Username: usernameLog,
             Password: passwordLog,
         }).then((response)=> {
-
             if(response.data.message) {
                 setLoginStatus(response.data.message);
             } else {
@@ -30,7 +29,7 @@ function Login() {
             }
         });
     };
-   
+
     return(
         <div className="container my-5">
             <h2 className="page-title text-center mb-4">Log In</h2>
@@ -53,5 +52,4 @@ function Login() {
         </div>
     );
 }
-
 export default Login;

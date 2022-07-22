@@ -1,4 +1,4 @@
-import {React} from "react";
+import React from "react";
 import "../../style/Placepage.css";
 import { GoLocation } from 'react-icons/go';
 import { BsTelephoneFill } from 'react-icons/bs';

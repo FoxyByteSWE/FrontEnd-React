@@ -1,4 +1,5 @@
-import {React, useState } from "react";
+import React from "react";
+import {useState } from "react";
 import { FiUserPlus } from 'react-icons/fi';
 import Axios from 'axios';
 //import { useNavigate } from "react-router-dom";
@@ -7,24 +8,20 @@ import "../../style/LoginSignup.css";
 import * as yup from "yup";
 
 const Signup = () => {
-
     const [emailReg, setEmailReg] = useState('');
     const [usernameReg, setUsernameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
     //const navigate = useNavigate();
-
     const userSchema = yup.object().shape({
         username: yup.string().required("Required"),
         email: yup.string().email("Please enter a valid email").required("Required"),
         password: yup.string().min(4).max(15).required("Required"),
     });
-
     const onSubmit = async (values, actions) => {
         console.log("submitted");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         actions.resetForm();
     }
-
     const {values, errors, touched, handleBlur, handleChange, handleSubmit} = useFormik({
         initialValues: {
             email: "",
@@ -34,7 +31,6 @@ const Signup = () => {
         validationSchema: userSchema,
         onSubmit,
     });
-
     const signup = () => {
         if(!errors.email && !errors.username && !errors.password) {
             Axios.post('http://localhost:3001/register', {
@@ -46,9 +42,8 @@ const Signup = () => {
             });
             //navigate('/');
         }
-    };
-
-    return(
+};
+return(
         <div className="container my-5">
             <h2 className="page-title text-center mb-4">Sign Up</h2>
             <div className="row pt-4">
@@ -96,5 +91,4 @@ const Signup = () => {
         </div>
     );
 };
-
 export default Signup;
