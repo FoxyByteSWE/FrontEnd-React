@@ -3,12 +3,13 @@ import "../../style/Placepage.css";
 import { GoLocation } from 'react-icons/go';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { TbWorld } from 'react-icons/tb';
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams  } from "react-router-dom";
 
 function PlacePage() {
     const arrayRest= useLocation();
+    const restaurantName= useParams().path;
     const data= arrayRest.state.restaurant;
-    
+    console.log(useLocation())
     return (
         <div className="container mb-5 py-5 ">
             <h1 className="mb-3 text-center">{data.Nome}</h1>

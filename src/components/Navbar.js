@@ -1,4 +1,5 @@
-import { React, useContext, useState, useRef } from "react";
+import React from 'react'
+import { useContext, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
@@ -7,9 +8,15 @@ import "../style/Search.css";
 import mainLogo from "../Logo/Logo.png";
 import { UserContext } from "../components/UserContext";
 
-function Navbar({placeholder, restaurantes}) {
+function Navbar({placeholder}) {   
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
+    const [restaurantes, setRestaurantes] = useState([]);
+    useEffect(()=>{
+        fetch('http://localhost:3001/restaurants')
+        .then(res => res.json())
+        .then(data => setRestaurantes(data))
+    });
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
@@ -20,14 +27,14 @@ function Navbar({placeholder, restaurantes}) {
             setFilteredData([]);
         } else {
             setFilteredData(newFilter);
-        }
-        
+        } 
     };
 
     const searchWord=useRef(null);
     const clearInput = () => {
         setFilteredData([]);
         searchWord.current.value = '';
+        setWordEntered("");
       };
 
     const {user, setUser} = useContext(UserContext);
@@ -35,8 +42,7 @@ function Navbar({placeholder, restaurantes}) {
     const handleLogOut = () => {
         setUser(null);
         navigate('/');
-    }
-
+    };
     return(
         <div className="nav-bar d-flex flex-row justify-content-between">
             <Link to="/" className="logo"><img src={mainLogo} alt="Logo" /></Link>
@@ -55,7 +61,8 @@ function Navbar({placeholder, restaurantes}) {
                 <div className="data-result d-flex flex-column shadow">
                     { 
                         filteredData.slice(0,15).map((restaurant, key) => {
-                        return <Link to="/place-page" state={{restaurant}} key={key} className="data-item" onClick={clearInput}>{restaurant.Nome}</Link>
+                            const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
+                            return <Link to={`/place-page/${path}`} state={{restaurant}} key={key} className="data-item" onClick={clearInput}>{restaurant.Nome}</Link>
                                      
                     })}
                 </div>      

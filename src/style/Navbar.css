@@ -26,19 +26,24 @@
     color: rgb(243, 189, 189);
 }
 
-/*.mobile-menu-btn{
+.mobile-menu-btn{
     color: white;
     border: none;
     background: transparent;
     margin-right: 5px;
     display: none;
-}*/
+}
 .logo img{
     width: 6em;
     height: auto;
     margin-right: 5px;
+    @media only screen and (max-width: 769px) {
+            width: auto;
+    }
 }
 
-/*@media only screen and (max-width: 769px) {
-
-}*/
+@media only screen and (max-width: 769px) {
+    .mobile-menu-btn {
+    display: block;
+  }
+}

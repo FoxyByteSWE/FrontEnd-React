@@ -8,35 +8,29 @@ import Signup from "./components/pages/Signup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React, { Component }  from 'react';
 import { useState, useMemo } from "react";
-import Axios from "axios";
-import ".//style/App.css";
+import "./style/App.css";
 import { UserContext } from "./components/UserContext";
 
-
 function App() {
-  const [restaurantes, setRestaurantes] = useState([]);
-  Axios.get("http://localhost:3001/restaurants").then((response) => {
-    setRestaurantes(response.data);
-  });
-
-const [user, setUser] = useState(null);
-const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
+  const [user, setUser] = useState(null);
+  const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
 
   return (
     <Router>
       <div className="App">
         <UserContext.Provider value={userValue}>
-          <Navbar placeholder="Search places" restaurantes={restaurantes}/>
+          <Navbar placeholder="Search places"/>
         </UserContext.Provider>
         <UserContext.Provider value={userValue}>
           <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/login"  element={<Login/>} />
               <Route path="/sign-up" element={<Signup/>}/>
-              <Route path="/place-page" element={<PlacePage/>}/>
+              <Route path="/place-page/:path" element={<PlacePage /*changePath={path=>setPath(path)}*/ /> } />
               <Route path="/favourites" element={<Favourites/>}/>
-              <Route path="/user-page/" element={<Userpage/>}/>
+              <Route path="/user-page/:username" element={<Userpage />}/>
               <Route path="*" element={<ErrorPage/>}/>
           </Routes>
         </UserContext.Provider>
