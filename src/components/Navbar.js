@@ -69,10 +69,11 @@ function Navbar({placeholder}) {
                 }
             </div>    
                 <ul className="nav-links d-flex flex-row justify-content-between">
-                    {user? (
+                    {user?              
+                    (
                         <>
                             <li>
-                                <Link to="/user-page" className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
+                                <Link to={`/user-page/${(user[0].Username).toLowerCase()}`} className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
                             </li>
                             <li>
                                 <a onClick={handleLogOut} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
@@ -95,3 +96,6 @@ function Navbar({placeholder}) {
 }
 
 export default Navbar;
+/*
+{`/user-page/${username}`}
+*/
