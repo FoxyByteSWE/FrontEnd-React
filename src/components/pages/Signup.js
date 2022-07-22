@@ -3,7 +3,7 @@ import { FiUserPlus } from 'react-icons/fi';
 import Axios from 'axios';
 //import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import "../../style/Validation.css";
+import "../../style/LoginSignup.css";
 import * as yup from "yup";
 
 const Signup = () => {
@@ -62,32 +62,32 @@ const Signup = () => {
                                 onChange={(e) => {setUsernameReg(e.target.value); handleChange(e)}}
                                 type="text"
                                 name= "username"
-                                className="form-control my-3 py-2" 
+                                className="form-control py-2 mt-4" 
                                 placeholder="Username"
                                 onBlur={handleBlur}
                                 />
-                                {errors.username && touched.username && <p className="error-msg-validation">{errors.username}</p>}
+                                <p className="error-msg-validation">{errors.username && touched.username && errors.username}</p>
                                 <input
                                 value={values.email}
                                 onChange={(e) => {setEmailReg(e.target.value); handleChange(e)}}
                                 type="email"
                                 name= "email"                              
-                                className="form-control my-3 py-2" 
+                                className="form-control py-2 mt-4" 
                                 placeholder="E-mail"
                                 onBlur={handleBlur} 
                                 />
-                                {errors.email && touched.email && <p className="error-msg-validation">{errors.email}</p>}
+                                <p className="error-msg-validation">{errors.email && touched.email && errors.email}</p>
                                 <input
                                 value={values.password}
                                 onChange={(e) => {setPasswordReg(e.target.value); handleChange(e)}}
                                 type="password"
                                 name= "password"                                         
-                                className="form-control my-3 py-2" 
+                                className="form-control py-2 mt-4" 
                                 placeholder="Password"
                                 onBlur={handleBlur}
                                 />  
-                                {errors.password && touched.password && <p className="error-msg-validation">{errors.password}</p>}
-                                <button className="btn btn-primary mt-4" type="submit" onClick={signup} >Sign Up</button>                            
+                                <p className="error-msg-validation">{errors.password && touched.password && errors.password}</p>
+                                <button className="btn btn-primary btn-form" type="submit" onClick={signup} >Sign Up</button>                            
                             </form>
                         </div>
                     </div>
