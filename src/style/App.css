@@ -1,5 +1,4 @@
 .App{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding-top: 4em;
+    min-height: 100vh;
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useContext, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch } from 'react-icons/fi';
@@ -44,8 +44,8 @@ function Navbar({placeholder}) {
         navigate('/');
     };
     return(
-        <div className="nav-bar d-flex flex-row justify-content-between">
-            <Link to="/" className="logo"><img src={mainLogo} alt="Logo" /></Link>
+        <nav className="navbar navbar-expand-lg navbar-light">
+            <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
                 <div className="d-flex flex-row">
                     <input placeholder= {placeholder} className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
@@ -67,33 +67,39 @@ function Navbar({placeholder}) {
                     })}
                 </div>      
                 }
-            </div>    
-                <ul className="nav-links d-flex flex-row justify-content-between">
-                    {user?              
+            </div>  
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto"> 
+            {user?              
                     (
                         <>
-                            <li>
-                                <Link to={`/user-page/${(user[0].Username).toLowerCase()}`} className="text-decoration-none"><FiUser className="font-nav" size="25"/></Link>
+                            <li className="nav-item">
+                                <Link to={`/user-page/${(user[0].Username).toLowerCase()}`} className="nav-link"><FiUser className="font-nav" size="25"/></Link>
                             </li>
-                            <li>
-                                <a onClick={handleLogOut} className="text-decoration-none"><FiLogOut className="font-nav" size="25"/></a>
+                            <li className="nav-item">
+                                <a onClick={handleLogOut} className="nav-link"><FiLogOut className="font-nav" size="25"/></a>
                             </li>
                         </>
                     ):(
                         <>
-                            <li>
-                                <Link to="/login" className="text-decoration-none"><FiLogIn className="font-nav" size="25"/></Link>
+                            <li className="nav-item">
+                                <Link to="/login" className="nav-link"><FiLogIn className="font-nav" size="25"/> Login</Link>
                             </li>
-                            <li>
-                                <Link to="/sign-up" className="text-decoration-none"><FiUserPlus className="font-nav" size="25"/></Link>
+                            <li className="nav-item">
+                                <Link to="/sign-up" className="nav-link"><FiUserPlus className="font-nav" size="25"/> Signup</Link>
                             </li>
                         </>
                         )
-                    }                  
-                </ul>
+                    }            
+            </ul>
         </div>
+    </nav>
     );
-}
+};
 
 export default Navbar;
 /*

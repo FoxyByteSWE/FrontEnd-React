@@ -1,8 +1,3 @@
-.search-container{
-    width: 50%;
-    position: relative;
-    bottom: 0;
-}
 
 .search-icon {
     background-color: transparent;
@@ -12,7 +7,7 @@
     padding: 5px;
 }
 
-#clearBtn{
+#clearBtn {
     cursor: pointer;
 }
 
@@ -35,7 +30,7 @@
 .data-result::-webkit-scrollbar-thumb {
     background-color: #004649;
     border-radius: 20px;
-}
+}   
 
 .data-item{
     color: black !important;
@@ -46,4 +41,12 @@
 
 .data-item:hover{
     background-color: #00838c41;
+}
+.navbar .search-bar, .navbar .data-result {
+        width: 30em;
+  }
+@media only screen and (max-width: 480px) {
+    .navbar .search-bar, .navbar .data-result {
+        width: 10em;
+  }
 }

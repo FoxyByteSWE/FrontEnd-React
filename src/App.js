@@ -24,6 +24,7 @@ function App() {
           <Navbar placeholder="Search places"/>
         </UserContext.Provider>
         <UserContext.Provider value={userValue}>
+        <div>
           <Routes>
               <Route path="/" element={<Home/>} />
               <Route path="/login"  element={<Login/>} />
@@ -33,6 +34,7 @@ function App() {
               <Route path="/user-page/:username" element={<Userpage />}/>
               <Route path="*" element={<ErrorPage/>}/>
           </Routes>
+          </div>
         </UserContext.Provider>
         <Footer/>
       </div>

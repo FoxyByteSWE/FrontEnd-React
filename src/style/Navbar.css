@@ -47,3 +47,31 @@
     display: block;
   }
 }
+
+.navbar {
+    position: fixed !important;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 10px !important;
+    background-color: #00828c;
+    justify-content: space-around !important;
+}
+.navbar .nav-link {
+    color: white;
+    
+
+}
+.navbar-nav .nav-item{
+    padding: 0 10px 0 10px;
+}   
+.navbar .navbar-collapse{
+    flex-grow: inherit;
+} 
+.navbar-brand img{
+    width: 100%;
+    max-width: 5em;
+}
+button:focus {
+    box-shadow: none !important;
+  }

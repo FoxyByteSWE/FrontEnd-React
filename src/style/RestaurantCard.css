@@ -1,6 +1,13 @@
 .card-favs{
     height: 30em;
     width:20em;
+    display: block;
+    color: black;
+    box-shadow: 0 .5rem 1rem gray !important;
+    text-decoration: none;
+}
+.card-favs:hover {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
 }
 
 .card-btn{
@@ -12,7 +19,7 @@
     font-size: smaller;
     height: 40px;
     overflow: hidden;
-    overflow-y: scroll;
+   /* overflow-y: scroll;*/
 }
 
 .card-img-top {
