@@ -1,11 +1,11 @@
-import React from "react";
+    import React from "react";
 import {Link} from 'react-router-dom';
 import "../style/RestaurantCard.css";
 
 const RestaurantCard = ({restaurant}) => {
-    const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
+    const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-'); 
     return(
-        <div className="card-favs m-auto border-0 shadow">
+        <Link to={`/place-page/${path}`} state= {{restaurant}} className="card-favs m-auto border-0">
             <img className="card-img-top" src={restaurant.Immagine} alt="Card image cap" />
             <div className="card-body text-center">
                 <h5 className="card-title my-3">{restaurant.Nome}</h5>
@@ -13,7 +13,7 @@ const RestaurantCard = ({restaurant}) => {
                 <p className="indirizzo-card mt-3">{restaurant.Indirizzo}</p>
                 <Link to={`/place-page/${path}`} state= {{restaurant}} className="btn btn-primary card-btn">Check it</Link>
             </div>
-        </div>
+        </Link>
     );
 };
 

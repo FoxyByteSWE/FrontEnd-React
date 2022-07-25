@@ -21,7 +21,6 @@ function Login() {
             Username: usernameLog,
             Password: passwordLog,
         }).then((response)=> {
-            console.log(response)
             if(response.data.message) {
                 setLoginStatus(response.data.message);
             } else {
@@ -62,5 +61,4 @@ function Login() {
         </div>
     );
 }
-
 export default Login;
