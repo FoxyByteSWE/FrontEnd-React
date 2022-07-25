@@ -24,16 +24,16 @@ function App() {
           <Navbar placeholder="Search places"/>
         </UserContext.Provider>
         <UserContext.Provider value={userValue}>
-        <div>
-          <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="/login"  element={<Login/>} />
-              <Route path="/sign-up" element={<Signup/>}/>
-              <Route path="/place-page/:path" element={<PlacePage /*changePath={path=>setPath(path)}*/ /> } />
-              <Route path="/favourites" element={<Favourites/>}/>
-              <Route path="/user-page/:username" element={<Userpage />}/>
-              <Route path="*" element={<ErrorPage/>}/>
-          </Routes>
+          <div>
+            <Routes>
+                <Route path="/" element={<Home/>} />
+                <Route path="/login"  element={<Login/>} />
+                <Route path="/sign-up" element={<Signup/>}/>
+                <Route path="/place-page/:path" element={<PlacePage /*changePath={path=>setPath(path)}*/ /> } />
+                <Route path="/favourites" element={<Favourites/>}/>
+                <Route path="/user-page/:username" element={<Userpage />}/>
+                <Route path="*" element={<ErrorPage/>}/>
+            </Routes>
           </div>
         </UserContext.Provider>
         <Footer/>

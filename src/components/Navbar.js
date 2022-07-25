@@ -43,6 +43,7 @@ function Navbar({placeholder}) {
         setUser(null);
         navigate('/');
     };
+    //console.log(user)
     return(
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
@@ -58,11 +59,11 @@ function Navbar({placeholder}) {
                     </div>
                 </div>
                 {filteredData.length !== 0 &&
-                <div className="data-result d-flex flex-column shadow">
+                <div className="data-result d-flex flex-column shadow mt-3">
                     { 
                         filteredData.slice(0,15).map((restaurant, key) => {
                             const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
-                            return <Link to={`/place-page/${path}`} state={{restaurant}} key={key} className="data-item" onClick={clearInput}>{restaurant.Nome}</Link>
+                            return <Link to={`/place-page/${path}`} state={{restaurant}} key={key} className="data-item text-decoration-none" onClick={clearInput}>{restaurant.Nome}</Link>
                                      
                     })}
                 </div>      
