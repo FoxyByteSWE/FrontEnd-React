@@ -37,7 +37,6 @@ function Navbar({placeholder, restaurantes}) {
         setUser(null);
         navigate('/');
     }
-
     return(
         <div className="nav-bar d-flex flex-row justify-content-between">
             <Link to="/" className="logo"><img src={mainLogo} alt="Logo" /></Link>

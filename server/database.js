@@ -2,12 +2,16 @@ const express = require("express");
 const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
-//const multer = require ('multer');
-//const path = require ('path');
 const { useResolvedPath } = require("react-router");
 const { Controller } = require("react-hook-form");
 const bcrypt = require("bcrypt");
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const saltRounds = 10;
+
+//const multer = require ('multer');
+//const path = require ('path');
 /*
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -21,10 +25,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 */
+/*
+app.use(cors({
+	origin: ["http://localhost:3000"],
+	methods: ["GET", "POST", "PUT"],
+	credentials: true
+}));
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({
+	key: "userId",
+	secret: "subscribe",
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+		expires: 60 * 60 * 24,
+	}
+}))*/
 app.use(cors());
 app.use(express.json());
-
 const db_restaurants = mysql.createConnection({
   user: "root",
   host: "localhost",
@@ -76,6 +96,14 @@ app.post('/register', (req, res) => {
 	});
 });
 
+/*app.get("/login", (req, res) => {
+	if(req.session.user) {
+		res.send({loggedIn: true, user: req.session.user})
+	} else {
+		res.send({loggedIn: false})
+	}
+});*/
+
 app.post('/login', (req, res) => {
 
 	const Username = req.body.Username;
@@ -91,6 +119,8 @@ app.post('/login', (req, res) => {
 			if (result.length > 0) {
 				bcrypt.compare(Password, result[0].Password, (error, response)=>{
 					if(response) {
+						/*req.session.user = result;
+						console.log(req.session.user);*/
 						res.send(result)
 					} else {
 						res.send({ message: "Wrong username or password"});

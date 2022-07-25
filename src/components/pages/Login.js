@@ -1,4 +1,4 @@
-import {React, useState, useRef, useContext} from "react";
+import {React, useState, useRef, useContext, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 import Axios from 'axios';
@@ -14,12 +14,14 @@ function Login() {
     const passwordRef=useRef(null);
     const navigate = useNavigate();
 
+    Axios.defaults.withCredentials = true;
+
     const login = () => {
         Axios.post('http://localhost:3001/login', {
             Username: usernameLog,
             Password: passwordLog,
         }).then((response)=> {
-
+            console.log(response)
             if(response.data.message) {
                 setLoginStatus(response.data.message);
             } else {
@@ -30,6 +32,13 @@ function Login() {
             }
         });
     };
+
+
+   /* useEffect(()=> {
+        Axios.get("http://localhost:3001/login").then((response) => {
+            console.log(response);
+        });
+    }, []);*/
    
     return(
         <div className="container my-5">

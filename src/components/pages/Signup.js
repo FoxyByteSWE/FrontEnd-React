@@ -34,7 +34,7 @@ const Signup = () => {
         validationSchema: userSchema,
         onSubmit,
     });
-
+    
     const signup = () => {
         if(!errors.email && !errors.username && !errors.password) {
             Axios.post('http://localhost:3001/register', {
