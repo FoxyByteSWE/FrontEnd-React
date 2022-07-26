@@ -4,6 +4,7 @@ import { FiLogIn } from 'react-icons/fi';
 import Axios from 'axios';
 import { UserContext } from "../UserContext";
 import "../../style/LoginSignup.css";
+import { object } from "yup";
 
 function Login() {
     const [usernameLog, setUsernameLog] = useState('');
@@ -14,10 +15,10 @@ function Login() {
     const passwordRef=useRef(null);
     const navigate = useNavigate();
 
-    Axios.defaults.withCredentials = true;
+   // Axios.defaults.withCredentials = true;
 
     const login = () => {
-        Axios.post('http://localhost:3001/login', {
+       Axios.post('http://localhost:3001/login', {
             Username: usernameLog,
             Password: passwordLog,
         }).then((response)=> {
@@ -25,12 +26,11 @@ function Login() {
                 setLoginStatus(response.data.message);
                 console.log(response.data)
             } else {
-                setUser(response.data);
-               /* usernameRef.current.value = '';
-                passwordRef.current.value = '';
-                navigate('/');*/
+                const info = response.data[0];
+                setUser(info);
+                navigate('/');
             }
-        });
+       });
     };
 
 
@@ -39,7 +39,7 @@ function Login() {
             console.log(response);
         });
     }, []);
-   
+
     return(
         <div className="container my-5">
             <h2 className="page-title text-center mb-4">Log In</h2>
@@ -49,10 +49,10 @@ function Login() {
                         <div className="card-body text-center py-5">
                             <FiLogIn className="font-nav" size="50"/>
                             <form className="my-4">
-                                <input type="text" onChange={(e) => {setUsernameLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Username" ref={usernameRef}></input>
-                                <input type="password" onChange={(e) => {setPasswordLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Password" ref={passwordRef}></input>
+                                <input type="text" onChange={(e) => {setUsernameLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Username" ></input>
+                                <input type="password" onChange={(e) => {setPasswordLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Password" ></input>
                                 <p className="error-msg-validation"> {loginStatus} </p>
-                                <button onClick={login} className="btn btn-primary btn-form">Login</button>
+                                <button onClick={login} className="btn btn-primary btn-form" type="button">Login</button>
                             </form>
                             <p className="text-center">Don't have an account? <Link to="/sign-up">Sign Up</Link></p>
                         </div>

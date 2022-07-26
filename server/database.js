@@ -43,9 +43,7 @@ app.use(session({
 	cookie: {
 		expires: 60 * 60 * 24,
 	}
-}))
-
-//app.use(cors());
+}));
 
 
 const db_restaurants = mysql.createConnection({
@@ -128,13 +126,33 @@ app.post('/login', (req, res) => {
 						res.send({ message: "Wrong username or password"});
 					}
 				});
-				res.send(result)
 			} else {
 				res.send({ message: "User doesn't exist"});
 			}			
 		}
 	);
 });
+/*
+app.post('/login', (req, res) => {
+
+	const Username = req.body.Username;
+	const Password = req.body.Password;
+
+	db_restaurants.query(
+		"SELECT * FROM users WHERE Username = ? AND Password=?", 
+		[Username, Password],
+		(err, result) => {
+			if (err) {
+				res.send({err: err})
+			}
+			if (result.length > 0) {
+				res.send(result)
+			} else {
+				res.send({ message: "User doesn't exist"});
+			}			
+		}
+	);
+});*/
 
 app.put('/update', (req, res) => {
 	const Username = req.body.Username;

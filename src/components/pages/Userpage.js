@@ -6,8 +6,9 @@ import { UserContext } from "../UserContext";
 
 function UserPage() {
     const {user, setUser} = useContext(UserContext);
-    const emailEdit = user[0].Email;
-    const [usernameEdit, setUsernameEdit] = useState(user[0].Username);
+    const emailEdit = user.Email;
+    const AdminEdit = user.Admin;
+    const [usernameEdit, setUsernameEdit] = useState(user.Username);
     const [imageUpload, setImageUpload] = useState(null);
 
     const update = (emailEdit) => {
@@ -15,11 +16,10 @@ function UserPage() {
             Email: emailEdit,
             Username: usernameEdit,
         }).then((response)=> {
-            const userObj= [
-                {Email: emailEdit, Username: usernameEdit, Foto: imageUpload},
-            ];
+            const userObj = {Email: emailEdit, Username: usernameEdit, Foto: imageUpload, Admin: AdminEdit};
             setUser(userObj);
-        });
+            console.log(user);
+        }); 
     };
 /*
     const upload = (emailEdit) => {
@@ -33,14 +33,15 @@ function UserPage() {
 
     <input type="file" name= "Foto" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}} />
 */
+console.log(user)
     return (
         <div className="container my-5">
             <h2 className="text-center">Your Page</h2>
             <div className="user-card d-flex flex-row">
                 <div className="user-card-left">
                     <div className="user-card-in-left d-flex flex-column align-items-center">
-                        <img src={user[0].Foto === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" : user[0].Foto} className="mb-3" />
-                        <h6>{user[0].Username}</h6>
+                        <img src={user.Foto === null ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" : user[0].Foto} className="mb-3" />
+                        <h6>{user.Username}</h6>
                         <form method="POST" action="/upload" encType="multipart/form-data" className="text-center my-3">
                             <button type="submit" className="btn btn-light">Change Image</button>
                         </form>
@@ -52,12 +53,12 @@ function UserPage() {
                         <div className="user-info">
                             <p className="mt-3">Name</p>
                             <div className="mb-4 d-flex flex-row justify-content-between b-b-default">
-                                <input className="edit-user-info" placeholder={user[0].Username} onChange={(e) => {setUsernameEdit(e.target.value);}} ></input>
+                                <input className="edit-user-info" placeholder={user.Username} onChange={(e) => {setUsernameEdit(e.target.value);}} ></input>
                                 <button type="button" className="btn btn-primary" onClick={()=>update(emailEdit)}>Edit</button>
                             </div>
                             <p>Email</p>
                             <div className="d-flex flex-row justify-content-between">
-                                <p className="edit-user-info">{user[0].Email}</p>
+                                <p className="edit-user-info">{user.Email}</p>
                             </div>
                         </div>
                     </div>

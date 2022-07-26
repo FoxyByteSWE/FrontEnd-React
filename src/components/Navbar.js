@@ -79,7 +79,7 @@ function Navbar({placeholder}) {
                     (
                         <>
                             <li className="nav-item">
-                                <Link to={`/user-page/${(user[0].Username).toLowerCase()}`} className="nav-link"><FiUser className="font-nav" size="25"/></Link>
+                                <Link to={`/user-page/${(user.Username).toLowerCase()}`} className="nav-link"><FiUser className="font-nav" size="25"/></Link>
                             </li>
                             <li className="nav-item">
                                 <a onClick={handleLogOut} className="nav-link"><FiLogOut className="font-nav" size="25"/></a>
