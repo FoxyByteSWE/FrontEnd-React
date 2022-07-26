@@ -8,20 +8,29 @@ import Signup from "./components/pages/Signup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import React, { Component }  from 'react';
+import React, { Component, useEffect }  from 'react';
 import { useState, useMemo } from "react";
 import "./style/App.css";
 import { UserContext } from "./components/UserContext";
+import Axios from "axios";
 
 function App() {
+  Axios.defaults.withCredentials = true; 
   const [user, setUser] = useState(null);
   const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
+  const [loginStatus, setLoginStatus] = useState('');
+  useEffect(()=> {
+      Axios.get("http://localhost:3001/login").then((response) => {
+          console.log(response.data.LoggedIn);
+          setLoginStatus(response.data.LoggedIn);
+      });
+  }, []);
 
   return (
     <Router>
       <div className="App">
         <UserContext.Provider value={userValue}>
-          <Navbar placeholder="Search places"/>
+          <Navbar loginStatus={loginStatus}/>
         </UserContext.Provider>
         <UserContext.Provider value={userValue}>
           <div>
@@ -29,7 +38,7 @@ function App() {
                 <Route path="/" element={<Home/>} />
                 <Route path="/login"  element={<Login/>} />
                 <Route path="/sign-up" element={<Signup/>}/>
-                <Route path="/place-page/:path" element={<PlacePage /*changePath={path=>setPath(path)}*/ /> } />
+                <Route path="/place-page/:path" element={<PlacePage/>} />
                 <Route path="/favourites" element={<Favourites/>}/>
                 <Route path="/user-page/:username" element={<Userpage />}/>
                 <Route path="*" element={<ErrorPage/>}/>

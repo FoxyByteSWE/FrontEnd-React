@@ -15,8 +15,6 @@ function Login() {
     const passwordRef=useRef(null);
     const navigate = useNavigate();
 
-   // Axios.defaults.withCredentials = true;
-
     const login = () => {
        Axios.post('http://localhost:3001/login', {
             Username: usernameLog,
@@ -24,7 +22,6 @@ function Login() {
         }).then((response)=> {
             if(response.data.message) {
                 setLoginStatus(response.data.message);
-                console.log(response.data)
             } else {
                 const info = response.data[0];
                 setUser(info);
@@ -32,13 +29,6 @@ function Login() {
             }
        });
     };
-
-
-    useEffect(()=> {
-        Axios.get("http://localhost:3001/login").then((response) => {
-            console.log(response);
-        });
-    }, []);
 
     return(
         <div className="container my-5">

@@ -28,7 +28,7 @@ const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(cors({
-	origin: ["http://localhost:3000"],
+	origin: ["http://localhost:3000", "http://localhost:3000/login", "http://localhost:3000/user-page"],
 	methods: ["GET", "POST", "PUT"],
 	credentials: true
 }));
@@ -41,7 +41,7 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 	cookie: {
-		expires: 60 * 60 * 24,
+		expires: 3600 * 1000,
 	}
 }));
 
@@ -132,27 +132,6 @@ app.post('/login', (req, res) => {
 		}
 	);
 });
-/*
-app.post('/login', (req, res) => {
-
-	const Username = req.body.Username;
-	const Password = req.body.Password;
-
-	db_restaurants.query(
-		"SELECT * FROM users WHERE Username = ? AND Password=?", 
-		[Username, Password],
-		(err, result) => {
-			if (err) {
-				res.send({err: err})
-			}
-			if (result.length > 0) {
-				res.send(result)
-			} else {
-				res.send({ message: "User doesn't exist"});
-			}			
-		}
-	);
-});*/
 
 app.put('/update', (req, res) => {
 	const Username = req.body.Username;

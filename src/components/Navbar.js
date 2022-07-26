@@ -7,8 +7,9 @@ import "../style/Navbar.css";
 import "../style/Search.css";
 import mainLogo from "../Logo/Logo.png";
 import { UserContext } from "../components/UserContext";
+import Axios from 'axios';
 
-function Navbar({placeholder}) {   
+function Navbar({loginStatus}) {  
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [restaurantes, setRestaurantes] = useState([]);
@@ -43,13 +44,13 @@ function Navbar({placeholder}) {
         setUser(null);
         navigate('/');
     };
-    //console.log(user)
+
     return(
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
                 <div className="d-flex flex-row">
-                    <input placeholder= {placeholder} className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
+                    <input placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
                     <div className="search-icon">
                         {wordEntered.length === 0 ? (
                             <FiSearch size="25"/>
@@ -75,11 +76,11 @@ function Navbar({placeholder}) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto"> 
-            {user?              
+            {user || loginStatus === true ?           
                     (
                         <>
                             <li className="nav-item">
-                                <Link to={`/user-page/${(user.Username).toLowerCase()}`} className="nav-link"><FiUser className="font-nav" size="25"/></Link>
+                                <Link to={`/user-page/${(user.Username).toLowerCase()}`} className="nav-link"><FiUser className="font-nav" size="25"/>Hello {user.Username}</Link>
                             </li>
                             <li className="nav-item">
                                 <a onClick={handleLogOut} className="nav-link"><FiLogOut className="font-nav" size="25"/></a>
@@ -103,6 +104,3 @@ function Navbar({placeholder}) {
 };
 
 export default Navbar;
-/*
-{`/user-page/${username}`}
-*/
