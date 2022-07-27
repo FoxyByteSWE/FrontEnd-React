@@ -1,7 +1,7 @@
 import React from 'react';
 import { useContext, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch } from 'react-icons/fi';
+import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiMenu } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai'
 import "../style/Navbar.css";
 import "../style/Search.css";
@@ -49,7 +49,7 @@ function Navbar({loginStatus}) {
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row justify-content-center">
                     <input placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
                     <div className="search-icon">
                         {wordEntered.length === 0 ? (
@@ -70,9 +70,9 @@ function Navbar({loginStatus}) {
                 </div>      
                 }
             </div>  
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-        </button>
+            <button className="navbar-toggler" id="hamburger-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <FiMenu className="navbar-toggler-icon" size="15"/>
+            </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto"> 
