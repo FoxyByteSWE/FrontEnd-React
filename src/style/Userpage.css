@@ -1,5 +1,5 @@
 .user-card{
-    width: 50em;
+    max-width: 50em;
     position: relative;
     margin: 5em auto 0 auto;
 }

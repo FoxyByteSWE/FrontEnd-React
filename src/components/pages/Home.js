@@ -19,7 +19,7 @@ function Home() {
                 
                 <div className="home-content">
                     <div className="container-consigliati">
-                        <h2 className="page-title text-center mb-4">Risitorati consigliati</h2>
+                        <h2 className="page-title text-center mb-4">Ristoranti consigliati</h2>
                         <div className="row py-3 mt-4">
 
                             {

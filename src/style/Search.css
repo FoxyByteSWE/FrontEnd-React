@@ -45,7 +45,7 @@
 .navbar .search-bar, .navbar .data-result {
         width: 30em;
   }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 720px) {
     .navbar .search-bar, .navbar .data-result {
         width: 10em;
   }

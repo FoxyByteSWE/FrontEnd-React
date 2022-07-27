@@ -21,7 +21,7 @@ function PlacePage() {
                     <div className="info-ristorante">
                         <p className="indirizzo"><GoLocation className="font-nav mr" size="20"/>{data.Indirizzo}</p>
                         <p className="tel"><BsTelephoneFill className="font-nav mr" size="20"/>{data.Telefono}</p>
-                        <p className="tel"><TbWorld className="font-nav mr" size="20"/>{data.Sito}</p>
+                        <a href={data.Sito} className="tel" target="_blank"><TbWorld className="font-nav mr" size="20"/>{data.Sito}</a>
                         <p className="my-5 text-justify description">Descrizione Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
                         molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
                         aliquam voluptatem veniam, est atque cumque eum delectus sint!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
