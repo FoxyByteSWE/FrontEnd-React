@@ -49,7 +49,7 @@ function Navbar({loginStatus}) {
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
-                <div className="d-flex flex-row justify-content-center">
+                <div className="d-flex flex-row justify-content-center container-search-icon">
                     <input placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
                     <div className="search-icon">
                         {wordEntered.length === 0 ? (

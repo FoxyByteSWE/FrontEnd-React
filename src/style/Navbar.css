@@ -7,7 +7,7 @@
     text-decoration: none;
 }
 
-.nav-bar a {
+.nav-link {
     color: white;
     text-decoration: none;
     cursor: pointer;
@@ -52,10 +52,7 @@
     width: 100%;
     height: auto;
 }
-.search-container{
-    width: 100%;
-    max-width: 55%;
-}
+
 button:focus {
     box-shadow: none !important;
   }
