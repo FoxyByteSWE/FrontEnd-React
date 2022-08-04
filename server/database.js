@@ -59,9 +59,7 @@ app.listen(3001, () => {
 
 app.get("/restaurants", (req, res) => {
 	db_restaurants.query("SELECT * FROM restaurants", (err, result) => {
-	  if (err) {
-		console.log(err);
-	  } else {
+	  if (!err) {
 		res.send(result);
 	  }
 	});
@@ -69,9 +67,7 @@ app.get("/restaurants", (req, res) => {
 
 app.get("/top-restaurants", (req, res) => {
 	db_restaurants.query("SELECT * FROM restaurants ORDER BY Ranking DESC LIMIT 3", (err, result) => {
-	  if (err) {
-		console.log(err);
-	  } else {
+	  if (!err) {
 		res.send(result);
 	  }
 	});
@@ -82,17 +78,12 @@ app.post('/register', (req, res) => {
 	const Username = req.body.Username;
 	const Password = req.body.Password;
 	bcrypt.hash(Password, saltRounds, (err, hash)=> {
-			if(err) {
-				console.log(err)
-			}
-
-		db_restaurants.query(
-			"INSERT INTO users (Email, Username, Password) VALUES (?,?,?)", 
-			[Email, Username, hash],
-			(err, result) => {
-				console.log(err);
-			}
-		);
+		if(!err) {
+			db_restaurants.query(
+				"INSERT INTO users (Email, Username, Password) VALUES (?,?,?)", 
+				[Email, Username, hash]
+			);
+		}
 	});
 });
 
@@ -120,7 +111,6 @@ app.post('/login', (req, res) => {
 				bcrypt.compare(Password, result[0].Password, (error, response)=>{
 					if(response) {
 						req.session.user = result;
-						console.log(req.session.user);
 						res.send(result)
 					} else {
 						res.send({ message: "Wrong username or password"});

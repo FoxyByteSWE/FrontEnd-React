@@ -13,11 +13,13 @@ function Navbar({loginStatus}) {
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [restaurantes, setRestaurantes] = useState([]);
+
     useEffect(()=>{
         fetch('http://localhost:3001/restaurants')
         .then(res => res.json())
         .then(data => setRestaurantes(data))
     });
+    
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);

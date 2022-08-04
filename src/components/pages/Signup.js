@@ -2,7 +2,7 @@ import React from "react";
 import {useState } from "react";
 import { FiUserPlus } from 'react-icons/fi';
 import Axios from 'axios';
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import "../../style/LoginSignup.css";
 import * as yup from "yup";
@@ -11,7 +11,7 @@ const Signup = () => {
     const [emailReg, setEmailReg] = useState('');
     const [usernameReg, setUsernameReg] = useState('');
     const [passwordReg, setPasswordReg] = useState('');
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const userSchema = yup.object().shape({
         username: yup.string().required("Required"),
         email: yup.string().email("Please enter a valid email").required("Required"),
@@ -31,18 +31,18 @@ const Signup = () => {
         validationSchema: userSchema,
         onSubmit,
     });
+
     const signup = () => {
         if(!errors.email && !errors.username && !errors.password) {
             Axios.post('http://localhost:3001/register', {
                 Email: emailReg,
                 Username: usernameReg,
                 Password: passwordReg,
-            }).then((response)=> {
-                console.log(response);
             });
-            //navigate('/');
+            navigate('/login');
         }
-};
+    };
+
 return(
         <div className="container my-5">
             <h2 className="page-title text-center mb-4">Sign Up</h2>
