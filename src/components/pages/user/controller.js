@@ -3,7 +3,7 @@ import { API } from '../../../config';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 
-export default function ModelView() {
+export default function controller() {
     const [usernameLog, setUsernameLog] = useState('');
     const [emailLog, setEmailLog] = useState('');
     const [passwordLog, setPasswordLog] = useState('');
@@ -70,6 +70,32 @@ export default function ModelView() {
         }).catch(err=> alert(err.message))
     }
 
+   async function update(e) {
+        e.preventDefault();
+        fetch(`${API}/update`, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            mode: 'cors', // no-cors, *cors, same-origin
+            body: JSON.stringify({
+                username: usernameLog,
+                email: emailLog
+            }) // body data type must match "Content-Type" header
+        }).then(response=>{
+            console.log('hiiiiii');
+            if (!response.ok) {
+                const message = `An error has occured: ${response.message}`;
+                return alert(message);
+            } return response.json()
+        }).then(data => {
+            setUser(data);
+            localStorage.setItem('user', JSON.stringify(data));
+            navigate('/');
+        }).catch(err=> alert(err.message))
+    }
+
     return {
         login,
         setUsernameLog,
@@ -77,6 +103,8 @@ export default function ModelView() {
         setEmailLog,
         error,
         loginStatus,
-        signup
+        signup,
+        user,
+        update
     }
 }

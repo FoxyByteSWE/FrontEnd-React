@@ -3,13 +3,11 @@ import "../../style/Placepage.css";
 import { GoLocation } from 'react-icons/go';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { TbWorld } from 'react-icons/tb';
-import { useLocation, useParams  } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function PlacePage() {
     const arrayRest= useLocation();
-    const restaurantName= useParams().path;
     const data= arrayRest.state.restaurant;
-    console.log(useLocation())
     return (
             <div className="container mb-5 py-5 ">
                 <h2 className="mb-3 text-center">{data.Nome}</h2>
@@ -21,7 +19,7 @@ function PlacePage() {
                     <div className="info-ristorante">
                         <p className="indirizzo"><GoLocation className="font-nav mr" size="20"/>{data.Indirizzo}</p>
                         <p className="tel"><BsTelephoneFill className="font-nav mr" size="20"/>{data.Telefono}</p>
-                        <a href={data.Sito} className="tel" target="_blank"><TbWorld className="font-nav mr" size="20"/>{data.Sito}</a>
+                        <a href={data.Sito} className="tel" target="_blank" rel="noopener noreferrer"><TbWorld className="font-nav mr" size="20"/>{data.Sito}</a>
                         <p className="my-5 text-justify description">Descrizione Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
                         molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
                         aliquam voluptatem veniam, est atque cumque eum delectus sint!Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis

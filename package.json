@@ -11,6 +11,7 @@
     "bootstrap": "^5.2.0-beta1",
     "concurrently": "^7.3.0",
     "formik": "^2.2.9",
+    "jsonwebtoken": "^8.5.1",
     "react": "^18.1.0",
     "react-autocomplete": "^1.8.1",
     "react-dom": "^18.1.0",

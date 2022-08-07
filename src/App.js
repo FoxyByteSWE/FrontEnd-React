@@ -1,38 +1,33 @@
-import Home from "./components/pages/Home";
-import Login from "./components/pages/Login";
+import Home from "./components/pages/home/Home";
+import Login from "./components/pages/user/Login";
 import Favourites from "./components/pages/Favourites";
 import ErrorPage from "./components/pages/ErrorPage";
 import PlacePage from "./components/pages/PlacePage";
-import Userpage from "./components/pages/Userpage";
-import Signup from "./components/pages/Signup";
+import Userpage from "./components/pages/user/Userpage";
+import Signup from "./components/pages/user/Signup";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import React, { Component, useEffect }  from 'react';
+import React from 'react';
 import { useState, useMemo } from "react";
 import "./style/App.css";
 import { UserContext } from "./components/UserContext";
 import Axios from "axios";
 
 function App() {
+  
   Axios.defaults.withCredentials = true; 
   const [user, setUser] = useState(null);
   const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
-  const [loginStatus, setLoginStatus] = useState('');
-  useEffect(()=> {
-      Axios.get("http://localhost:3001/login").then((response) => {
-          console.log(response.data.LoggedIn);
-          setLoginStatus(response.data.LoggedIn);
-      });
-  }, []);
+  const [loginStatus, _] = useState(false);
+  if(!user && localStorage.getItem('user'))
+    setUser(JSON.parse(localStorage.getItem('user')))
 
-  return (
+    return (
     <Router>
       <div className="App">
         <UserContext.Provider value={userValue}>
           <Navbar loginStatus={loginStatus}/>
-        </UserContext.Provider>
-        <UserContext.Provider value={userValue}>
           <div>
             <Routes>
                 <Route path="/" element={<Home/>} />
@@ -52,22 +47,3 @@ function App() {
 }
 
 export default App;
-
-
-/*
-        {
-          restaurantes?.length > 0 ?
-          (
-          <div className="restaurant-result">
-              {restaurantes.map((res)=>(
-              <RestaurantCard res={res} />
-              ))}
-          </div>
-          ) :
-          (
-          <div className="empty">
-              <h2>No restaurantes found</h2>
-          </div>
-          )
-        }
-*/

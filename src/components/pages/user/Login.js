@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
 import "./index.css";
-import modelView from "./modelView"
+import controller from "./controller"
 
 function Login() {
-    const { login, setUsernameLog, setPasswordLog, loginStatus } = modelView();
+    const { login, setUsernameLog, setPasswordLog, loginStatus } = controller();
     return(
         <div className="container my-5">
             <h2 className="page-title text-center mb-4">Log In</h2>

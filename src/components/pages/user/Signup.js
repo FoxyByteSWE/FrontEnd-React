@@ -1,10 +1,10 @@
 import React from "react";
 import { FiUserPlus } from 'react-icons/fi';
 import "./index.css";
-import modelView from "./modelView";
+import controller from "./controller";
 
 const Signup = () => {
-    const { signup, setUsernameLog, setPasswordLog, setEmailLog, error } = modelView();
+    const { signup, setUsernameLog, setPasswordLog, setEmailLog, error } = controller();
 
 return(
         <div className="container my-5">

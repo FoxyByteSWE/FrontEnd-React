@@ -2,22 +2,23 @@ import React from 'react';
 import { useContext, useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiMenu } from 'react-icons/fi';
-import {AiOutlineClose} from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai';
 import "../style/Navbar.css";
 import "../style/Search.css";
 import mainLogo from "../Logo/Logo.png";
 import { UserContext } from "../components/UserContext";
-import Axios from 'axios';
 
 function Navbar({loginStatus}) {  
     const [filteredData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
     const [restaurantes, setRestaurantes] = useState([]);
+
     useEffect(()=>{
         fetch('http://localhost:3001/restaurants')
         .then(res => res.json())
-        .then(data => setRestaurantes(data))
-    });
+        .then(data => setRestaurantes(data)).catch(err => alert(err.message || err))
+    },[]);
+    
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
@@ -42,6 +43,7 @@ function Navbar({loginStatus}) {
     const navigate = useNavigate();
     const handleLogOut = () => {
         setUser(null);
+        localStorage.clear();
         navigate('/');
     };
 
@@ -59,7 +61,7 @@ function Navbar({loginStatus}) {
                         )}                        
                     </div>
                 </div>
-                {filteredData.length !== 0 &&
+                {filteredData.length !==0 &&
                 <div className="data-result d-flex flex-column shadow mt-3">
                     { 
                         filteredData.slice(0,15).map((restaurant, key) => {
@@ -76,7 +78,7 @@ function Navbar({loginStatus}) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto"> 
-            {user || loginStatus === true ?           
+            {user || loginStatus?           
                     (
                         <>
                             <li className="nav-item">

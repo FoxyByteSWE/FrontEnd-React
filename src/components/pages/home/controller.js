@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function ModelView() {
+export default function controller() {
     const [restaurantInfo, setRestaurantInfo] = useState([]);
 
     async function fetchResInfo() {

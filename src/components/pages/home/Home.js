@@ -2,10 +2,10 @@ import React from 'react'
 import { useEffect } from "react";
 import "./index.css";
 import RestaurantCard from "../../RestaurantCard";
-import modelView from "./modelView"
+import controller from "./controller"
 
 function Home() {
-    const { restaurantInfo, fetchResInfo } = modelView();
+    const { restaurantInfo, fetchResInfo } = controller();
     useEffect(()=>{
         fetchResInfo();
     },[]);
