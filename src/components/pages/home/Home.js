@@ -1,27 +1,21 @@
 import React from 'react'
-import {useState, useEffect } from "react";
-import "../../style/Homepage.css";
-import RestaurantCard from "../RestaurantCard";
+import { useEffect } from "react";
+import "./index.css";
+import RestaurantCard from "../../RestaurantCard";
+import modelView from "./modelView"
 
 function Home() {
-    const [restaurantInfo, setRestaurantInfo] = useState([]);
-    const [loggedIn, setLoggedIn] = useState(null);
-
+    const { restaurantInfo, fetchResInfo } = modelView();
     useEffect(()=>{
-        fetch('http://localhost:3001/top-restaurants')
-        .then(res => res.json())
-        .then(data => setRestaurantInfo(data))
-    });
+        fetchResInfo();
+    },[]);
 
         return(
-            <div className="container my-5">
-                <p>{loggedIn }</p>
-                
+            <div className="container my-5">                
                 <div className="home-content">
                     <div className="container-consigliati">
                         <h2 className="page-title text-center mb-4">Ristoranti consigliati</h2>
                         <div className="row py-3 mt-4">
-
                             {
                                 restaurantInfo.map((restaurant, index) => {
                                     return (   
@@ -31,7 +25,6 @@ function Home() {
                                     )
                                     })
                             }
-
                         </div>
                     </div>
                 </div>

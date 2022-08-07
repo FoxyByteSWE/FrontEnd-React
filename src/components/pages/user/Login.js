@@ -1,35 +1,11 @@
-import React, { useState, useRef, useContext, useEffect} from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { FiLogIn } from 'react-icons/fi';
-import Axios from 'axios';
-import { UserContext } from "../UserContext";
-import "../../style/LoginSignup.css";
-import { object } from "yup";
+import "./index.css";
+import modelView from "./modelView"
 
 function Login() {
-    const [usernameLog, setUsernameLog] = useState('');
-    const [passwordLog, setPasswordLog] = useState('');
-    const [loginStatus, setLoginStatus] = useState('');
-    const {user, setUser} = useContext(UserContext);
-    const usernameRef= useRef(null);
-    const passwordRef=useRef(null);
-    const navigate = useNavigate();
-
-    const login = () => {
-       Axios.post('http://localhost:3001/login', {
-            Username: usernameLog,
-            Password: passwordLog,
-        }).then((response)=> {
-            if(response.data.message) {
-                setLoginStatus(response.data.message);
-            } else {
-                const info = response.data[0];
-                setUser(info);
-                navigate('/');
-            }
-       });
-    };
-
+    const { login, setUsernameLog, setPasswordLog, loginStatus } = modelView();
     return(
         <div className="container my-5">
             <h2 className="page-title text-center mb-4">Log In</h2>
@@ -38,11 +14,11 @@ function Login() {
                     <div className="card border-0 shadow">
                         <div className="card-body text-center py-5">
                             <FiLogIn className="font-nav" size="50"/>
-                            <form className="my-4">
+                            <form className="my-4" onSubmit={login}>
                                 <input type="text" onChange={(e) => {setUsernameLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Username" ></input>
                                 <input type="password" onChange={(e) => {setPasswordLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Password" ></input>
                                 <p className="error-msg-validation"> {loginStatus} </p>
-                                <button onClick={login} className="btn btn-primary btn-form" type="button">Login</button>
+                                <button  className="btn btn-primary btn-form" type="submit">Login</button>
                             </form>
                             <p className="text-center">Don't have an account? <Link to="/sign-up">Sign Up</Link></p>
                         </div>
