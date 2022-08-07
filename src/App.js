@@ -21,7 +21,6 @@ function App() {
   const [loginStatus, setLoginStatus] = useState('');
   useEffect(()=> {
       Axios.get("http://localhost:3001/login").then((response) => {
-          console.log(response.data.LoggedIn);
           setLoginStatus(response.data.LoggedIn);
       });
   }, []);

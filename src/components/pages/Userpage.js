@@ -18,7 +18,6 @@ function UserPage() {
         }).then((response)=> {
             const userObj = {Email: emailEdit, Username: usernameEdit, Foto: imageUpload, Admin: AdminEdit};
             setUser(userObj);
-            console.log(user);
         }); 
     };
 /*
@@ -33,7 +32,6 @@ function UserPage() {
 
     <input type="file" name= "Foto" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}} />
 */
-console.log(user)
     return (
         <div className="container my-5">
             <h2 className="text-center">Your Page</h2>

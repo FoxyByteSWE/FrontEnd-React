@@ -18,7 +18,6 @@ const Signup = () => {
         password: yup.string().min(4).max(15).required("Required"),
     });
     const onSubmit = async (values, actions) => {
-        console.log("submitted");
         await new Promise((resolve) => setTimeout(resolve, 1000));
         actions.resetForm();
     }
