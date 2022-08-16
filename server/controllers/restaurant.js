@@ -2,8 +2,10 @@ const { restaurantsList, topRetaurantsList } = require('../model').restaurant;
 
 const getRestaurants = (_, res) => {	
 	topRetaurantsList((err, result) => {
-		if(err)
+		if(err){
+			console.log(err);
 			return res.status(500).send({error: true, message: err.message})
+		}
 		res.send(result)
 	})
 }
