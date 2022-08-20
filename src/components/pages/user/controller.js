@@ -36,7 +36,7 @@ export default function controller() {
         const result = await response.json();
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result));
-        navigate('/');
+        navigate(`/user-page/${usernameLog}`);
     };
 
     function signup(e) {

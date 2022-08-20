@@ -1,5 +1,5 @@
 import React from "react";
-import "../../style/Placepage.css";
+import "../../../style/Placepage.css";
 import { GoLocation } from 'react-icons/go';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { TbWorld } from 'react-icons/tb';
@@ -9,7 +9,7 @@ function PlacePage() {
     const arrayRest= useLocation();
     const data= arrayRest.state.restaurant;
     return (
-            <div className="container mb-5 py-5 ">
+            <div className="container mb-5 py-5">
                 <h2 className="mb-3 text-center">{data.Nome}</h2>
                     <div className="container-img m-auto">
                         <img src={data.Immagine} className="img-restaurant d-block w-100 h-100" alt="..."/>

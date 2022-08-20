@@ -1,52 +1,20 @@
 import React from 'react';
-import { useContext, useState, useRef, useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiMenu } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai';
-import "../style/Navbar.css";
-import "../style/Search.css";
-import mainLogo from "../Logo/Logo.png";
-import { UserContext } from "../components/UserContext";
+import "./index.css";
+import mainLogo from "../../../Logo/Logo.png";
+import controller from "./controller"
 
-function Navbar({loginStatus}) {  
-    const [filteredData, setFilteredData] = useState([]);
-    const [wordEntered, setWordEntered] = useState("");
-    const [restaurantes, setRestaurantes] = useState([]);
-
-    useEffect(()=>{
-        fetch('http://localhost:3001/restaurants')
-        .then(res => res.json())
-        .then(data => setRestaurantes(data)).catch(err => alert(err.message || err))
-    },[]);
+function Navbar({loginStatus}) {
     
-    const handleFilter = (event) => {
-        const searchWord = event.target.value;
-        setWordEntered(searchWord);
-        const newFilter = restaurantes.filter((value) => {
-            return value.Nome.toLowerCase().includes(searchWord.toLowerCase());
-        });
-        if (searchWord === "") {
-            setFilteredData([]);
-        } else {
-            setFilteredData(newFilter);
-        } 
-    };
-
-    const searchWord=useRef(null);
-    const clearInput = () => {
-        setFilteredData([]);
-        searchWord.current.value = '';
-        setWordEntered("");
-      };
-
-    const {user, setUser} = useContext(UserContext);
-    const navigate = useNavigate();
-    const handleLogOut = () => {
-        setUser(null);
-        localStorage.clear();
-        navigate('/');
-    };
-
+    const {
+        restaurant, filteredData, fetchResInfo, handleFilter, handleLogOut, searchWord, wordEntered, clearInput, user
+    } = controller();
+    useEffect(()=>{
+        fetchResInfo()
+    },[]);
     return(
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
