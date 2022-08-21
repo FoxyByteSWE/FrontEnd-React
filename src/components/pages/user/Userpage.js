@@ -62,7 +62,7 @@ console.log(user)
             <h2 className="user-section-title">Your Favourites</h2>
             <div className='user-favs'>
             {
-                user.favList.map((restaurant, index) => {
+                user.favList && user.favList.map((restaurant, index) => {
                     return (   
                         <div className="col-sm my-3" key={index}>
                             <RestaurantCard restaurant={restaurant}/>
