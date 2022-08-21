@@ -4,6 +4,7 @@ const router = express.Router();
 const { postRegister,postLogin,putUpdate } = require('./user');
 const { getRestaurants, getTopRetaurants } = require('./restaurant');
 const { deleteFav, postFav } = require('./favourite');
+const { getSearch } = require('./search');
 
 //router.get('/users',loginCheck, getUsers); // for test
 
@@ -15,5 +16,6 @@ router.post('/login', postLogin);
 router.put('/update', putUpdate);
 router.post('/fav', postFav);
 router.put('/fav', deleteFav);
+router.get("/search", getSearch);
 
 module.exports = router;    

@@ -10,7 +10,7 @@ import controller from "./controller"
 function Navbar({loginStatus}) {
     
     const {
-        restaurant, filteredData, fetchResInfo, handleFilter, handleLogOut, searchWord, wordEntered, clearInput, user
+        search, restaurant, filteredData, fetchResInfo, handleFilter, handleLogOut, searchWord, wordEntered, clearInput, user
     } = controller();
     useEffect(()=>{
         fetchResInfo()
@@ -19,16 +19,12 @@ function Navbar({loginStatus}) {
         <nav className="navbar navbar-expand-lg navbar-light">
             <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
-                <div className="d-flex flex-row justify-content-center container-search-icon">
-                    <input placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord}/>
-                    <div className="search-icon">
-                        {wordEntered.length === 0 ? (
-                            <FiSearch size="25"/>
-                        ) : (
-                            <AiOutlineClose size="25" id="clearBtn" onClick={clearInput} />
-                        )}                        
-                    </div>
-                </div>
+                    <form
+                    onSubmit={search}
+                    className="d-flex flex-row justify-content-center container-search-icon">
+                        <input req placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord} onBlur={clearInput}/>
+                        <button className="search-icon" type="submit"><FiSearch size="25"/></button>
+                    </form>
                 {filteredData.length !==0 &&
                 <div className="data-result d-flex flex-column shadow mt-3">
                     { 

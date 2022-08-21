@@ -3,6 +3,7 @@ import Login from "./components/pages/user/Login";
 import Favourites from "./components/pages/Favourites";
 import ErrorPage from "./components/pages/ErrorPage";
 import PlacePage from "./components/pages/place/PlacePage";
+import Search from "./components/pages/search/Search";
 import Userpage from "./components/pages/user/Userpage";
 import Signup from "./components/pages/user/Signup";
 import Navbar from "./components/pages/navbar/Navbar";
@@ -16,7 +17,7 @@ import Axios from "axios";
 
 function App() {
   
-  Axios.defaults.withCredentials = true; 
+  Axios.defaults.withCredentials = true;
   const [user, setUser] = useState(null);
   const userValue = useMemo(()=>({user, setUser}), [user, setUser]);
   const [loginStatus, _] = useState(false);
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/place-page/:path" element={<PlacePage/>} />
                 <Route path="/favourites" element={<Favourites/>}/>
                 <Route path="/user-page/:username" element={<Userpage />}/>
+                <Route path="/search" element={<Search />}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </div>

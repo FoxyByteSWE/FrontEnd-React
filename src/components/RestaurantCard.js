@@ -75,9 +75,9 @@ const RestaurantCard = ({restaurant}) => {
                 <div className="card-icon">
                 {
                     user && user.favList && user.favList.filter(fav=> fav.place_id == restaurant.Codice_pk).length > 0?
-                    <AiFillHeart className="fav-icon icon-red" onClick={removeFav(restaurant.Codice_pk)}/>
+                    <AiFillHeart size={40} className="fav-icon icon-red" onClick={removeFav(restaurant.Codice_pk)}/>
                     :
-                    <AiFillHeart className="fav-icon" onClick={addToFav(restaurant.Codice_pk)}/>
+                    <AiFillHeart size={40} className="fav-icon" onClick={addToFav(restaurant.Codice_pk)}/>
                     
                 }
                 </div>

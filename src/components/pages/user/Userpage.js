@@ -59,7 +59,7 @@ console.log(user)
                     </div>
                 </div>
             </div>
-            <h2 className="user-section-title">Fav dsadsd</h2>
+            <h2 className="user-section-title">Your Favourites</h2>
             <div className='user-favs'>
             {
                 user.favList.map((restaurant, index) => {
