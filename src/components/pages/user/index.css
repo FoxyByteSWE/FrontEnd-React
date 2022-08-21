@@ -7,3 +7,11 @@
 .btn-form{
     margin-top: 1em;
 }
+.user-favs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+}
+.user-section-title {
+    text-align: center;
+}

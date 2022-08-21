@@ -1,4 +1,6 @@
 import React, { useState, useContext } from "react";
+import RestaurantCard from "../../RestaurantCard";
+
 import "../../../style/Userpage.css";
 import controller from "./controller"
 
@@ -56,6 +58,18 @@ console.log(user)
                         </div>
                     </div>
                 </div>
+            </div>
+            <h2 className="user-section-title">Fav dsadsd</h2>
+            <div className='user-favs'>
+            {
+                user.favList.map((restaurant, index) => {
+                    return (   
+                        <div className="col-sm my-3" key={index}>
+                            <RestaurantCard restaurant={restaurant}/>
+                        </div>
+                    )
+                    })
+            }
             </div>
         </div>
     );

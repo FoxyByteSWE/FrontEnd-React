@@ -1,4 +1,5 @@
 const { query } = require('./database/connection');
+const { userFavIds } = require('./favourite.js');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -32,9 +33,12 @@ const login = (username, password, cb) => {
 		(err, result) => {
 			if (err) return cb(err);
 			if (result.length === 0 || !bcrypt.compareSync(password, result[0].Password))
-				return cb(new Error("Wrong username or password"+error.message));
+				return cb(new Error("Wrong username or password" + error.message));
 			const { Username, Email, Admin } = result[0];
-			return cb(null, { Username, Email, Admin })
+			userFavIds(Email, (err2, favList)=>{
+				if(err2) return cb(err2);
+				return cb(null, { Username, Email, Admin, favList })
+			})
 		}
 	);
 }

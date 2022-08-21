@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { postRegister,postLogin,putUpdate } = require('./user');
 const { getRestaurants, getTopRetaurants } = require('./restaurant');
+const { deleteFav, postFav } = require('./favourite');
 
 //router.get('/users',loginCheck, getUsers); // for test
 
@@ -12,5 +13,7 @@ router.get("/top-restaurants", getTopRetaurants);
 router.post('/register', postRegister);
 router.post('/login', postLogin);
 router.put('/update', putUpdate);
+router.post('/fav', postFav);
+router.put('/fav', deleteFav);
 
 module.exports = router;    
