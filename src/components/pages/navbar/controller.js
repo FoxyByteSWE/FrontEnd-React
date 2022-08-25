@@ -41,7 +41,9 @@ export default function controller() {
         setWordEntered("");
       };
 
-    const {user, setUser} = useContext(UserContext);
+    const user = null;
+    const setUser = null;
+    //const {user, setUser} = useContext(UserContext);
 
     const [searchRest, setSearchRest] = useState([]);
     const [keyword, setKeyword] = useState(null);
