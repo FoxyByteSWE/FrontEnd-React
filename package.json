@@ -5,7 +5,6 @@
   "dependencies": {
     "@hookform/resolvers": "^2.9.5",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.24.0",
     "bootstrap": "^5.2.0-beta1",
@@ -50,5 +49,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^13.3.0",
+    "jest-dom": "^4.0.0",
+    "react-test-renderer": "^18.2.0"
   }
 }

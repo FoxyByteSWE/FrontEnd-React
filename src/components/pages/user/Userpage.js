@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import RestaurantCard from "../../RestaurantCard";
+import RestaurantCard from "../../restaurantcard/RestaurantCard";
 
 import "../../../style/Userpage.css";
 import controller from "./controller"

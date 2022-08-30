@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import {Link} from 'react-router-dom';
 import { AiFillHeart } from 'react-icons/ai';
-import { UserContext } from "./UserContext";
-import { API } from '../config';
-import "../style/RestaurantCard.css";
+import { UserContext } from "../UserContext";
+import { API } from '../../config';
+import "../../style/RestaurantCard.css";
 
 const RestaurantCard = ({restaurant}) => {
     console.log(restaurant)
