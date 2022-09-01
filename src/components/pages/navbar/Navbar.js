@@ -17,9 +17,9 @@ function Navbar({loginStatus}) {
     },[]);
     return(
         <nav className="navbar navbar-expand-lg navbar-light">
-            <Link to="/" className="navbar-brand"><img src={mainLogo} alt="Logo" /></Link>
+            <Link to="/" className="navbar-brand" data-testid="logo"><img src={mainLogo} alt="Logo" /></Link>
             <div className="d-flex flex-column search-container justify-content-center">
-                    <form
+                    <form data-testid="search-bar-test"
                     onSubmit={search}
                     className="d-flex flex-row justify-content-center container-search-icon">
                         <input req placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord} onBlur={clearInput}/>
@@ -42,23 +42,23 @@ function Navbar({loginStatus}) {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto"> 
-            {user || loginStatus?           
+            {user || loginStatus?     
                     (
                         <>
                             <li className="nav-item">
-                                <Link to={`/user-page/${(user.Username).toLowerCase()}`} className="nav-link"><FiUser className="font-nav" size="25"/>Hello {user.Username}</Link>
+                                <Link to={`/user-page/${(user.Username).toLowerCase()}`} className="nav-link" data-testid="user-link"><FiUser className="font-nav" size="25"/>Hello {user.Username}</Link>
                             </li>
                             <li className="nav-item">
-                                <a onClick={handleLogOut} className="nav-link"><FiLogOut className="font-nav" size="25"/></a>
+                                <a onClick={handleLogOut} className="nav-link" data-testid="logout-link"><FiLogOut className="font-nav" size="25"/></a>
                             </li>
                         </>
                     ):(
                         <>
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link"><FiLogIn className="font-nav" size="25"/> Login</Link>
+                                <Link to="/login" className="nav-link" data-testid="login-link"><FiLogIn className="font-nav" size="25"/> Login</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/sign-up" className="nav-link"><FiUserPlus className="font-nav" size="25"/> Signup</Link>
+                                <Link to="/sign-up" className="nav-link" data-testid="signup-link"><FiUserPlus className="font-nav" size="25"/> Signup</Link>
                             </li>
                         </>
                         )

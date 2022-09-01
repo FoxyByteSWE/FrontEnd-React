@@ -15,12 +15,6 @@ describe('App tests', () => {
     //expect(linkElement).toBeInTheDocument();
   });
 
-  test('render test logo', ()=> {
-    render(<App/>);
-    const logo = screen.getByAltText("Logo");
-    expect(logo).toBeInTheDocument;
-  })
-
   test('Home.js_1_ristoranti_is_present' , ()=>{
     render(<App />);
     expect(screen.getByText(/^Ristoranti consigliati$/i)).toBeInTheDocument();
@@ -35,5 +29,25 @@ describe('App tests', () => {
     render(<App />);
     expect(screen.getByText(/^signup$/i)).toBeInTheDocument();
   })
-})
+});
+/*
+describe('Links on the navbar brings to the right location', () => {
 
+  test('Logo brings to homepage', ()=> {
+    render(<App/>);
+    const logo = screen.getByAltText("Logo");
+    expect(logo).toBeInTheDocument;
+  })
+
+  test('Login link brings to login page' , ()=>{
+    render(<App />);
+    expect(screen.getByText(/^Ristoranti consigliati$/i)).toBeInTheDocument();
+  })
+
+  test('Signup link brings to signup page' , ()=>{
+    render(<App />);
+    expect(screen.getByText(/^Ristoranti consigliati$/i)).toBeInTheDocument();
+  })
+});
+
+*/
