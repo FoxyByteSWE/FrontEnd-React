@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Navbar from './../Navbar';
-import controller from './../controller';
 import React from "react";
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router, MemoryRouter} from "react-router-dom";

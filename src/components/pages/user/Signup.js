@@ -42,7 +42,7 @@ return(
                                 required
                                 />  
                                 <p className="error-msg-validation">{error.message}</p>
-                                <button className="btn btn-primary btn-form" type="submit" >Sign Up</button>                            
+                                <button className="btn btn-primary btn-form" type="submit" >Sign-Up</button>                            
                             </form>
                         </div>
                     </div>

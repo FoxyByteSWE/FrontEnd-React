@@ -9,7 +9,7 @@ export default function controller() {
     const [passwordLog, setPasswordLog] = useState('');
     const [error, setError] = useState('');
     const [loginStatus, setLoginStatus] = useState('');
-    const { user, setUser } = useContext(UserContext);
+    //const { user, setUser } = useContext(UserContext);  --> nei test da errore 'Cannot read property 'user' of null'
     // const usernameRef = useRef(null);
     // const passwordRef = useRef(null);
     const navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function controller() {
             return alert(message);
         }
         const result = await response.json();
-        setUser(result);
+        //setUser(result);
         localStorage.setItem('user', JSON.stringify(result));
         navigate(`/user-page/${usernameLog}`);
     };
@@ -64,7 +64,7 @@ export default function controller() {
                 return alert(message);
             } return response.json()
         }).then(data => {
-            setUser(data);
+            //setUser(data);
             localStorage.setItem('user', JSON.stringify(data));
             navigate('/');
         }).catch(err=> alert(err.message))
@@ -90,7 +90,7 @@ export default function controller() {
                 return alert(message);
             } return response.json()
         }).then(data => {
-            setUser(data);
+            //setUser(data);
             localStorage.setItem('user', JSON.stringify(data));
             navigate('/');
         }).catch(err=> alert(err.message))
@@ -104,7 +104,7 @@ export default function controller() {
         error,
         loginStatus,
         signup,
-        user,
+        //user,
         update
     }
 }
