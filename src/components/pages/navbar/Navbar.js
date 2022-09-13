@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiMenu } from 'react-icons/fi';
 import {AiOutlineClose} from 'react-icons/ai';
 import "./index.css";
-import mainLogo from "../../../Logo/Logo.png";
+import mainLogo from "../../../Logo/logo3.png";
 import controller from "./controller"
 
 function Navbar({loginStatus}) {
@@ -25,12 +25,12 @@ function Navbar({loginStatus}) {
                         <input req placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord} onBlur={clearInput}/>
                         <button className="search-icon" type="submit"><FiSearch size="25"/></button>
                     </form>
-                {filteredData.length !==0 &&
+                {filteredData.length !==0 && wordEntered !="" &&
                 <div className="data-result d-flex flex-column shadow mt-3">
-                    { 
-                        filteredData.slice(0,15).map((restaurant, key) => {
+                    {
+                        filteredData.slice(0,15).map((restaurant) => {
                             const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
-                            return <Link to={`/place-page/${path}`} state={{restaurant}} key={key} className="data-item text-decoration-none" onClick={clearInput}>{restaurant.Nome}</Link>
+                            return <Link to={`/place-page/${path}`} state={{restaurant}} className="data-item text-decoration-none">{restaurant.Nome}</Link>
                                      
                     })}
                 </div>      

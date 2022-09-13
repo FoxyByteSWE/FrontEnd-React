@@ -29,7 +29,7 @@ function App() {
       <div className="App">
         <UserContext.Provider value={userValue}>
           <Navbar loginStatus={loginStatus}/>
-          <div>
+          <div className="main-container">
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/login"  element={<Login/>} />
