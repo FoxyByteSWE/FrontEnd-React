@@ -1,8 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Navbar from './../Navbar';
 import React from "react";
+import renderer from 'react-test-renderer';
+import { StaticRouter } from 'react-router';
 import ReactDOM from "react-dom";
-import {BrowserRouter as Router, MemoryRouter} from "react-router-dom";
+import {BrowserRouter as Router, MemoryRouter, Link} from "react-router-dom";
 
 test('renders react link', () => {
     const div = document.createElement("div");
@@ -95,11 +97,18 @@ test('Search input should be empty', ()=> {
     expect(searchInput.value).toBe("");
     
   });
-
 /*
 describe('Links on the navbar brings to the right location', () => {
     test('Logo brings to homepage', ()=> {
-      const logo = screen.queryByTestId("Logo");
-      expect(logo.props().to).toBe('/');
+      //const logo = screen.queryByTestId("Logo");
+      //expect(logo.toHaveAttribute('to')).toBe('/');
+      const component = renderer.create(
+        <StaticRouter location="someLocation">
+          <Link to="/" />
+        </StaticRouter>
+      );
+    
+      let tree = component.toJSON();
+      expect(tree).toMatchSnapshot();
     })
 });*/

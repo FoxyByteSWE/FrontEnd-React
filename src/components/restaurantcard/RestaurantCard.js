@@ -6,8 +6,8 @@ import { API } from '../../config';
 import "../../style/RestaurantCard.css";
 
 const RestaurantCard = ({restaurant}) => {
-    console.log(restaurant)
-    const {user, setUser} = useContext(UserContext);
+    //console.log(restaurant)
+    //const {user, setUser} = useContext(UserContext);
     //console.log(user)
     const addToFav = (id)=> async () => {
         if (user && user.Email) {
@@ -67,11 +67,12 @@ const RestaurantCard = ({restaurant}) => {
         localStorage.setItem('user', JSON.stringify(newUser));
           }
     }
-    const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-'); 
+    //const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-'); 
+    const path = "prova";
     return(
-        <div to={`/place-page/${path}`} state= {{restaurant}} className="card-favs m-auto border-0 shadow">
+        <div /*to={`/place-page/${path}`}*/ state= {{restaurant}} className="card-favs m-auto border-0 shadow">
             {
-                user &&
+                /*user &&
                 <div className="card-icon">
                 {
                     user && user.favList && user.favList.filter(fav=> fav.place_id == restaurant.Codice_pk).length > 0?
@@ -81,12 +82,13 @@ const RestaurantCard = ({restaurant}) => {
                     
                 }
                 </div>
+                */
             }
-            <img className="card-img-top" src={restaurant.Immagine} alt="Card image cap" />
+            <img className="card-img-top" data-testid="img-locale-rc" src="{restaurant.Immagine}" alt="Card image cap" />
             <div className="card-body text-center">
-                <h5 className="card-title my-3">{restaurant.Nome}</h5>
-                <h6>{restaurant.Categoria}</h6>
-                <p className="indirizzo-card mt-3">{restaurant.Indirizzo}</p>
+                <h5 className="card-title my-3" data-testid="nome-locale-rc">{/*restaurant.Nome*/}dfsd</h5>
+                <h6 data-testid="categoria-locale-rc">{/*restaurant.Categoria*/}dfsd</h6>
+                <p className="indirizzo-card mt-3" data-testid="indirizzo-locale-rc">{/*restaurant.Indirizzo*/}sdfds</p>
                 <Link to={`/place-page/${path}`} state= {{restaurant}} className="btn btn-primary card-btn">Check it</Link>
             </div>
         </div>

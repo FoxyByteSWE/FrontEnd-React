@@ -15,6 +15,7 @@ function Home() {
                 <div className="home-content">
                     <div className="container-consigliati">
                         <h2 className="page-title text-center mb-4">Ristoranti consigliati</h2>
+                        Check it
                         <div className="row py-3 mt-4">
                             {
                                 restaurantInfo.map((restaurant, index) => {

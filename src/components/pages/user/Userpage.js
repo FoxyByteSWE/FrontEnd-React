@@ -5,7 +5,7 @@ import "../../../style/Userpage.css";
 import controller from "./controller"
 
 function UserPage() {
-const {setUsernameLog, user, update} = controller();
+//const {setUsernameLog, user, update} = controller();
     /*const update = (emailEdit) => {
         Axios.put('http://localhost:3001/update', {
             Email: emailEdit,
@@ -28,7 +28,6 @@ const {setUsernameLog, user, update} = controller();
 
     <input type="file" name= "Foto" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}} />
 */
-console.log(user)
     return (
         <div className="container my-5">
             <h2 className="text-center">Your Page</h2>
@@ -36,7 +35,7 @@ console.log(user)
                 <div className="user-card-left">
                     <div className="user-card-in-left d-flex flex-column align-items-center">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" className="mb-3" />
-                        <h6>{user.Username}</h6>
+                        <h6>{/*user.Username*/}fgfdg</h6>
                         <form method="POST" action="/upload" encType="multipart/form-data" className="text-center my-3">
                             <button type="submit" className="btn btn-light">Change Image</button>
                         </form>
@@ -48,12 +47,12 @@ console.log(user)
                         <div className="user-info">
                             <p className="mt-3">Name</p>
                                 <form className="mb-4 d-flex flex-row justify-content-between b-b-default">
-                                <input className="edit-user-info" placeholder={user.Username}></input>
+                                <input className="edit-user-info" placeholder="name"></input>
                                 <button type="submit" className="btn btn-primary">Edit</button>
                                 </form>
                             <p>Email</p>
                             <div className="d-flex flex-row justify-content-between">
-                                <p className="edit-user-info">{user.Email}</p>
+                                <p className="edit-user-info">{/*user.Email*/}fdgdfg</p>
                             </div>
                         </div>
                     </div>
@@ -61,14 +60,14 @@ console.log(user)
             </div>
             <h2 className="user-section-title">Your Favourites</h2>
             <div className='user-favs'>
-            {
+            {/*
                 user.favList && user.favList.map((restaurant, index) => {
                     return (   
                         <div className="col-sm my-3" key={index}>
                             <RestaurantCard restaurant={restaurant}/>
                         </div>
                     )
-                    })
+                    })*/
             }
             </div>
         </div>
