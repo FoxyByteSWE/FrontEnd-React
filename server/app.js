@@ -4,6 +4,9 @@ const router = require("./controllers")
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
 
 const app = express();
 app.use(cors({
@@ -28,5 +31,19 @@ app.use(router);
 
 
 app.set('port', process.env.PORT || 3001);
+
+const options = {
+  swaggerDefinition: {
+    info: {
+      title: 'Michelin Social API',
+      version: '1.0.0',
+      servers: ["htpp://localhost:3001"] 
+    },
+  },
+  apis: ['./controllers/index.js'], // files containing annotations as above
+};
+
+const swaggerDocument = swaggerJsdoc(options);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 module.exports = app;
