@@ -11,7 +11,7 @@ export default function controller() {
     const [restaurantes, setRestaurantes] = useState([]);
     
     async function fetchResInfo() {
-        const response = await fetch('http://localhost:3001/restaurants');
+        const response = await fetch(API + '/restaurants');
         if (!response.ok) {
             const message = `An error has occured: ${response.status}`;
             return alert(message);
@@ -23,20 +23,15 @@ export default function controller() {
     const handleFilter = (event) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
-        const newFilter = restaurantes.filter((value) => {
-            return value.Nome.toLowerCase().includes(searchWord.toLowerCase());
-        });
-        if (searchWord === "") {
-            setFilteredData([]);
-        } else {
-            setFilteredData(newFilter);
-        } 
+        let newFilter = restaurantes.filter(value => 
+            value.Nome.toLowerCase().includes(searchWord.toLowerCase())
+        );
+        setFilteredData(newFilter);
     };
 
     const searchWord=useRef(null);
     
     const clearInput = () => {
-        setFilteredData([]);
         searchWord.current.value = '';
         setWordEntered("");
       };
@@ -52,6 +47,7 @@ export default function controller() {
         localStorage.clear();
         navigate('/');
     };
+
     const search = e => {
     e.preventDefault();
     if (searchWord.current.value) setKeyword(searchWord.current.value);
@@ -59,7 +55,7 @@ export default function controller() {
     }
 
     async function fetchRest(s) {
-        const response = await fetch('http://localhost:3001/search?s=' + s,
+        const response = await fetch(API + '/search?s=' + s,
             {
                 mode: 'cors', // no-cors, *cors, same-origin
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached

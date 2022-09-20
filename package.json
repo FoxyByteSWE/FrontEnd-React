@@ -26,7 +26,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "npm run client",
     "server": "cd server && npm run start",
     "client": "react-scripts start",
     "build": "react-scripts build",

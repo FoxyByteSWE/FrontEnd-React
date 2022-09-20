@@ -100,8 +100,8 @@
     flex-grow: inherit;
 } 
 .navbar-brand {
-    width: 100%;
-    max-width: 7%;
+    min-width: 6rem;
+    max-width: 10rem;
     height: auto;
     margin-right: 0;
 }
