@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from "react";
 import "./index.css";
-import RestaurantCard from "../../RestaurantCard";
+import RestaurantCard from "../../restaurantcard/RestaurantCard";
 import controller from "./controller"
 
 function Home() {
