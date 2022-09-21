@@ -76,3 +76,16 @@ import { Link } from "react-router-dom";
     expect(passwordInput.value).toBe("");
     
   });
+
+
+  test('should call submit function with the right parameters', ()=> {
+    const history = createMemoryHistory();
+    render(
+        <Router location={history.location} navigator={history}>
+            <Login/>
+        </Router>
+    );
+    const passwordInput = screen.getByPlaceholderText(/Password/i);
+    expect(passwordInput.value).toBe("");
+    
+  });

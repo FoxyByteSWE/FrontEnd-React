@@ -6,7 +6,7 @@ import { StaticRouter } from 'react-router';
 import ReactDOM from "react-dom";
 import {BrowserRouter as Router, MemoryRouter, Link} from "react-router-dom";
 
-test('renders react link', () => {
+test('renders navbar', () => {
     const div = document.createElement("div");
     ReactDOM.render(<Router>
                         <Navbar />
