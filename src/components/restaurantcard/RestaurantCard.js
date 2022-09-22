@@ -6,7 +6,6 @@ import { API } from '../../config';
 import "../../style/RestaurantCard.css";
 
 const RestaurantCard = ({restaurant}) => {
-    console.log(restaurant)
     const {user, setUser} = useContext(UserContext);
     //console.log(user)
     const addToFav = (id)=> async () => {

@@ -10,7 +10,7 @@ import controller from "./controller"
 function Navbar({loginStatus}) {
     
     const {
-        search, restaurant, filteredData, fetchResInfo, handleFilter, handleLogOut, searchWord, wordEntered, clearInput, user
+        search, filteredData, fetchResInfo, handleFilter, handleLogOut, searchWord, wordEntered, clearInput, user
     } = controller();
     useEffect(()=>{
         fetchResInfo()
@@ -23,18 +23,31 @@ function Navbar({loginStatus}) {
                     data-testid="search-bar-test"
                     onSubmit={search}
                     className="d-flex flex-row justify-content-center container-search-icon">
-                        <input req placeholder= "Search places" className= 'search-bar form-control me-2' onChange={handleFilter} ref={searchWord} onBlur={clearInput}/>
+                        <input req placeholder= "Search places" 
+                        className= 'search-bar form-control me-2' 
+                        onChange={handleFilter} 
+                        ref={searchWord} 
+                        />
                         <button className="search-icon" type="submit"><FiSearch size="25"/></button>
                     </form>
-                {filteredData.length !==0 && wordEntered !="" &&
-                <div className="data-result d-flex flex-column shadow mt-3">
-                    {
-                        filteredData.slice(0,15).map((restaurant) => {
-                            const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
-                            return <Link to={`/place-page/${path}`} state={{restaurant}} className="data-item text-decoration-none">{restaurant.Nome}</Link>
-                                     
-                    })}
-                </div>      
+                {
+                    filteredData.length !==0 && wordEntered !="" &&
+                    <div className="data-result d-flex flex-column shadow mt-3">
+                        {
+                            filteredData.slice(0,15).map((restaurant, key) => {
+                                const path = ((restaurant.Nome).toLowerCase()).replaceAll(' ','-');
+                                return (
+                                    <Link to={`/place-page/${path}`} 
+                                    state={{restaurant}} 
+                                    key={key}
+                                    onClick={clearInput}
+                                    className="data-item text-decoration-none">
+                                    {restaurant.Nome}
+                                    </Link>
+                
+                                    )  
+                        })}
+                    </div>      
                 }
             </div>  
             <button className="navbar-toggler" id="hamburger-btn" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
