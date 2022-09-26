@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import RestaurantCard from './../RestaurantCard';
-import React, { useMemo, useState } from "react";
+import React from "react";
 import {BrowserRouter as Router} from 'react-router-dom';
 
 const restaurant = {

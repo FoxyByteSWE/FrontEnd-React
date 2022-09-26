@@ -8,7 +8,7 @@ const Signup = () => {
 
 return(
         <div className="container my-5">
-            <h2 className="page-title text-center mb-4">Sign Up</h2>
+            <h2 className="page-title text-center mb-4" data-testid="title">Sign Up</h2>
             <div className="row pt-4">
                 <div className="col-12 col-sm-8 col-md-6 m-auto">
                     <div className="card border-0 shadow">

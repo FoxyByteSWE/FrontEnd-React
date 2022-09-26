@@ -1,10 +1,8 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import Navbar from './../Navbar';
 import React from "react";
-import renderer from 'react-test-renderer';
-import { StaticRouter } from 'react-router';
 import ReactDOM from "react-dom";
-import {BrowserRouter as Router, MemoryRouter, Link} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 
 test('renders navbar', () => {
     const div = document.createElement("div");
@@ -67,23 +65,6 @@ describe('Renders all the elements in the navbar', () => {
         expect(user).not.toBeInTheDocument;
         expect(logout).not.toBeInTheDocument;
     });
-/*
-    test('renders userpage and logout links if user is logged in', ()=> {
-        render(
-            <Router>
-                <Navbar loginStatus={true}/>
-            </Router>
-        );
-        const user = screen.queryByTestId("user-link");
-        const logout = screen.queryByTestId("logout-link");
-        expect(user).toBeInTheDocument;
-        expect(logout).toBeInTheDocument;
-    });
-    */
-/*
-    test('does not render userpage and logout links if user is logged in', ()=> {
-    });
-*/
 });
 
 test('Search input should be empty', ()=> {

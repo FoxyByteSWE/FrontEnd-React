@@ -9,10 +9,10 @@ test('renders Signup component', async () => {
     const history = createMemoryHistory();
     render(
       <Router location={history.location} navigator={history}>
-        <Signup />,
-      </Router>,
+        <Signup />
+      </Router>
     );
-    expect(screen.getByText(/Sign Up/i)).toBeInTheDocument();
+    expect(screen.getByTestId('title').textContent).toMatch('Sign Up');
   });
 
   test('Username input should be empty', ()=> {
