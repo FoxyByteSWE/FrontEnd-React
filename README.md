@@ -5,6 +5,7 @@ Questo repository contiene il codice Frontend del progetto di SWE 2021/22: Guida
 ## Installazione Applicativo
 
 Per utilizzare l'applicazione seguite i seguenti passi dopo aver scaricato il repository:
+
 1 - spostarsi nella cartella server tramite il comando
 ### cd server
 
