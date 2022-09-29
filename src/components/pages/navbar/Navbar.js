@@ -63,7 +63,7 @@ function Navbar({loginStatus}) {
                                 <Link to={`/user-page/${(user.Username).toLowerCase()}`} className="nav-link" data-testid="user-link"><FiUser className="font-nav" size="25"/>Hello {user.Username}</Link>
                             </li>
                             <li className="nav-item">
-                                <a onClick={handleLogOut} className="nav-link" data-testid="logout-link"><FiLogOut className="font-nav" size="25"/></a>
+                                <a onClick={handleLogOut} className="nav-link" data-testid="logout-link"><FiLogOut className="font-nav" size="25"/> Logout</a>
                             </li>
                         </>
                     ):(

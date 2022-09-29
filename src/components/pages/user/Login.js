@@ -15,8 +15,8 @@ function Login() {
                         <div className="card-body text-center py-5">
                             <FiLogIn className="font-nav" size="50"/>
                             <form className="my-4" onSubmit={login}>
-                                <input type="text" onChange={(e) => {setUsernameLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Username" ></input>
-                                <input type="password" onChange={(e) => {setPasswordLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Password" ></input>
+                                <input type="text" onChange={(e) => {setUsernameLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Username" required></input>
+                                <input type="password" onChange={(e) => {setPasswordLog(e.target.value);}} className="form-control mt-4 py-2" placeholder="Password" required></input>
                                 <p className="error-msg-validation"> {loginStatus} </p>
                                 <button  className="btn btn-primary btn-form" type="submit">Login</button>
                             </form>

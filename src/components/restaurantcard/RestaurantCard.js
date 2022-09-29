@@ -63,7 +63,7 @@ const RestaurantCard = ({restaurant}) => {
         };
         setUser(newUser);
         localStorage.setItem('user', JSON.stringify(newUser));
-          }
+        }
     }
     const path = restaurant.Nome.toString().replace(/ /g,'-').toLowerCase();
     return(
@@ -72,7 +72,7 @@ const RestaurantCard = ({restaurant}) => {
                 user &&
                 <div className="card-icon">
                 {
-                    user && user.favList && user.favList.filter(fav=> fav.place_id == restaurant.Codice_pk).length > 0?
+                    user && user.favList && user.favList.filter(fav=> fav.place_id === restaurant.Codice_pk).length > 0?
                     <AiFillHeart size={40} className="fav-icon icon-red" onClick={removeFav(restaurant.Codice_pk)}/>
                     :
                     <AiFillHeart size={40} className="fav-icon" onClick={addToFav(restaurant.Codice_pk)}/>
