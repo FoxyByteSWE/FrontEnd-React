@@ -99,30 +99,23 @@
 .navbar .navbar-collapse{
     flex-grow: inherit;
 } 
-.navbar-brand {
-    min-width: 6rem;
-    max-width: 10rem;
-    height: auto;
-    margin-right: 0;
-}
+
 .navbar-brand img{
-    width: 100%;
-    height: auto;
+    max-width: 10rem;
+    margin-right: 0;
 }
 
 button:focus {
     box-shadow: none !important;
   }
 
-/*@media only screen and (max-width: 913px) {
+@media only screen and (max-width: 913px) {
 
-    .navbar-brand {
-        width: 100%;
-        max-width: 15%;
-        height: auto;
+    .navbar-brand img {
+        max-width: 6rem;
         margin-right: 0;
     }
-}*/
+}
     /*.mobile-menu-btn {
     display: block;
     }*/
