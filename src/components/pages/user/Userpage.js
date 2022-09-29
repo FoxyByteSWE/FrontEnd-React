@@ -1,62 +1,67 @@
 import React, { useState, useContext } from "react";
 import RestaurantCard from "../../restaurantcard/RestaurantCard";
-
 import "../../../style/Userpage.css";
 import controller from "./controller"
+import { AvatarGenerator } from "random-avatar-generator";
+import * as Yup from 'yup';
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 function UserPage() {
-const {setUsernameLog, user, update} = controller();
-    /*const update = (emailEdit) => {
-        Axios.put('http://localhost:3001/update', {
-            Email: emailEdit,
-            Username: usernameEdit,
-        }).then(()=> {
-            const userObj = {Email: emailEdit, Username: usernameEdit, Foto: imageUpload, Admin: AdminEdit};
-            setUser(userObj);
-            console.log(user);
-        }); 
-    };*/
-/*
-    const upload = (emailEdit) => {
-        Axios.put('http://localhost:3001/upload', {
-            Email: emailEdit,
-            Foto: imageUpload,
-        }).then((response)=> {
-            console.log(response.config);
-        });
-    };
-
-    <input type="file" name= "Foto" className="btn btn-light" onChange={(event) => {setImageUpload(event.target.files[0])}} />
-*/
-console.log(user)
+const {setPasswordLog, user, update, deleteUser} = controller();
+const avatarGenerator = new AvatarGenerator();
+const formSchema = Yup.object().shape({
+    password: Yup.string()
+      .required('Password is mendatory')
+      .min(3, 'Password must be at 3 char long'),
+    confirmPwd: Yup.string()
+      .required('Password is mendatory')
+      .oneOf([Yup.ref('password')], 'Passwords does not match'),
+})
+const formOptions = { resolver: yupResolver(formSchema) }
+const { register, handleSubmit, reset, formState } = useForm(formOptions)
+const { errors } = formState
     return (
         <div className="container my-5">
-            <h2 className="text-center">Your Page</h2>
-            <div className="user-card d-flex flex-row">
-                <div className="user-card-left">
-                    <div className="user-card-in-left d-flex flex-column align-items-center">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU" className="mb-3" />
-                        <h6>{user.Username}</h6>
-                        <form method="POST" action="/upload" encType="multipart/form-data" className="text-center my-3">
-                            <button type="submit" className="btn btn-light">Change Image</button>
-                        </form>
-                    </div>
+            <div className="d-flex flex-row justify-content-between info-container">
+                <div className="d-flex flex-column justify-content-between">
+                    <img src={avatarGenerator.generateRandomAvatar()} width = "100" className="rounded-circle align-self-center" alt="..."></img>
+                    <h2 className="text-center">{user.Username}</h2>
+                    <p className="p-2 text-center">{user.Email}</p>
                 </div>
-                <div className="user-card-info">
-                    <div className="user-card-in">
-                        <h6 className="b-b-default ">Information</h6>
-                        <div className="user-info">
-                            <p className="mt-3">Name</p>
-                                <form className="mb-4 d-flex flex-row justify-content-between b-b-default">
-                                <input className="edit-user-info" placeholder={user.Username}></input>
-                                <button type="submit" className="btn btn-primary">Edit</button>
-                                </form>
-                            <p>Email</p>
-                            <div className="d-flex flex-row justify-content-between">
-                                <p className="edit-user-info">{user.Email}</p>
-                            </div>
+                <div>
+                    <h3>Cambia la password</h3>
+                    <form onSubmit={handleSubmit(update)} className="d-flex flex-column justify-content-between">
+                        <div className="form-group">
+                            <input
+                            name="password" 
+                            {...register('password')}
+                            type = "password" 
+                            className={`form-control mt-4 py-2 ${errors.password ? 'is-invalid' : ''}`} 
+                            placeholder="Nuova password" 
+                            required>
+                            </input>
+                            <div className="invalid-feedback">{
+                                errors.password?
+                            errors.password.message: null}</div>
                         </div>
-                    </div>
+                        <div className="form-group">
+                        <input
+                        name="confirmPwd" 
+                        {...register('confirmPwd')}
+                        onChange={(e) => {setPasswordLog(e.target.value);}} 
+                        type = "password" 
+                        className={`form-control mt-4 py-2 ${errors.password ? 'is-invalid' : ''}`} 
+                        placeholder="Conferma password" required>
+                        </input>
+                        <div className="invalid-feedback">{
+                            errors.confirmPwd? errors.confirmPwd.message: ""}</div>
+                        </div>
+                        <button  className="btn btn-primary btn-form" type="submit">Cambia</button>
+                    </form>
+                </div>
+                <div>
+                    <button className="btn btn-danger" onClick={deleteUser}>Eimina profilo</button>
                 </div>
             </div>
             <h2 className="user-section-title">Your Favourites</h2>

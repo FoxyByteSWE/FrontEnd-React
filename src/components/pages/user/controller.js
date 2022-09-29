@@ -21,7 +21,6 @@ export default function controller() {
             cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({
                 username: usernameLog,
@@ -39,13 +38,13 @@ export default function controller() {
         navigate(`/user-page/${usernameLog}`);
     };
 
-    function signup(e) {
+    async function signup(e) {
         e.preventDefault();
         console.log({
-            api: API + '/register',
+            api: API + '/users',
             usernameLog, passwordLog, emailLog
         });
-        fetch(`${API}/register`, {
+        const response = await fetch(`${API}/register`, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
@@ -57,43 +56,57 @@ export default function controller() {
                 password: passwordLog,
                 email: emailLog
             }) // body data type must match "Content-Type" header
-        }).then(response=>{
-            console.log('hiiiiii');
-            if (!response.ok) {
-                const message = `An error has occured: ${response.message}`;
-                return alert(message);
-            } return response.json()
-        }).then(data => {
-            setUser(data);
-            localStorage.setItem('user', JSON.stringify(data));
-            navigate('/');
-        }).catch(err=> alert(err.message))
+        });
+
+        if (!response.ok) {
+            const message = `An error has occured: ${response.message}`;
+            return alert(message);
+        }
+
+        const result = await response.json();
+        setUser(result);
+        localStorage.setItem('user', JSON.stringify(result));
+        navigate(`/user-page/${usernameLog}`);
     }
 
-   async function update(e) {
-        e.preventDefault();
-        fetch(`${API}/update`, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    async function update() {
+        const response = await fetch(`${API}/users`, {
+            method: 'PUT', // GET, POST, *PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             mode: 'cors', // no-cors, *cors, same-origin
             body: JSON.stringify({
-                username: usernameLog,
-                email: emailLog
+                email: user.Email,
+                password: passwordLog
             }) // body data type must match "Content-Type" header
-        }).then(response=>{
-            console.log('hiiiiii');
-            if (!response.ok) {
-                const message = `An error has occured: ${response.message}`;
-                return alert(message);
-            } return response.json()
-        }).then(data => {
-            setUser(data);
-            localStorage.setItem('user', JSON.stringify(data));
-            navigate('/');
-        }).catch(err=> alert(err.message))
+        })
+        if (!response.ok) {
+            const message = `An error has occured: ${response.message}`;
+            return alert(message);
+        }
+        else return alert('success!')
+    }
+
+    async function deleteUser(e) {
+        e.preventDefault();
+        const response = await fetch(`${API}/users`, {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify({
+                email: user.Email
+            })  
+        })
+        if (!response.ok) {
+            const message = `An error has occured: ${response.message}`;
+            return alert(message);
+        }
+        setUser(null);
+        localStorage.removeItem('user');
+        navigate(`/`);
     }
 
     return {
@@ -105,6 +118,7 @@ export default function controller() {
         loginStatus,
         signup,
         user,
-        update
+        update,
+        deleteUser
     }
 }

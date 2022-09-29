@@ -16,3 +16,10 @@
     text-align: center;
     padding: 2rem;
 }
+.info-container {
+    border-bottom: 1px solid #808080;
+    padding-bottom: 2rem;
+}
+.delete-btn {
+    padding-bottom: 3rem;
+}
