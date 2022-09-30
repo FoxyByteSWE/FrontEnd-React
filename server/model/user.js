@@ -1,5 +1,5 @@
 const { query } = require('./database/connection');
-const { userFavIds } = require('./favourite.js');
+const { userFavIds, deleteFavIds} = require('./favourite.js');
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -33,7 +33,7 @@ const login = (username, password, cb) => {
 		(err, result) => {
 			if (err) return cb(err);
 			if (result.length === 0 || !bcrypt.compareSync(password, result[0].Password))
-				return cb(new Error("Wrong username or password" + error.message));
+				return cb(new Error("Wrong username or password"));
 			const { Username, Email, Admin } = result[0];
 			userFavIds(Email, (err2, favList)=>{
 				if(err2) return cb(err2);
@@ -42,11 +42,30 @@ const login = (username, password, cb) => {
 		}
 	);
 }
-const update = (username, email, cb) => {
-    query(
-		"UPDATE users SET Username = ? WHERE Email = ?", 
-		[username, email],
+const update = (email, password, cb) => {
+    bcrypt.hash(password, saltRounds, (err, hash)=> {
+		if(!err) {
+			query(
+				"UPDATE users SET Password = ? WHERE Email = ?;", 
+				[hash, email],
+                error => {
+					if(error) return  cb(new Error('Server Error in database'));
+				}
+			);
+		}else cb(new Error('Error hashing: '+ err.message));
+	});
+}
+
+const deleteuser = (email, cb) => {
+	deleteFavIds(email, (err2)=>{
+		if(err2) return cb(err2);
+	});
+	console.log(email);
+	query(
+		"DELETE FROM users WHERE Email = ?;", 
+		[email],
 		cb
 	);
 }
-module.exports = { register, login, update }
+
+module.exports = { register, login, update , deleteuser}

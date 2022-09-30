@@ -23,8 +23,21 @@ const removeFav = (userId, placeId, cb) => {
     });
 }
 
+const deleteFavIds = (userId, cb) => {
+    query("DELETE FROM favorite WHERE user_id=?",
+    [userId],
+	err => {
+        if (err) {
+            console.log(err.message);
+            return cb(err);
+        }
+    }
+    );
+}
+
 module.exports = {
     userFavIds,
     removeFav,
-    addFav
+    addFav,
+    deleteFavIds
 }

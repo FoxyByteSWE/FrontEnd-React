@@ -10,8 +10,8 @@ const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 app.use(cors({
-	origin: ["http://localhost:3000", "http://localhost:3000/login", "http://localhost:3000/user-page"],
-	methods: ["GET", "POST", "PUT"],
+	origin: "*",
+	methods: ["GET", "POST", "PUT", "DELETE"],
 	credentials: true
 }));
 app.use((req, _, next)=>{

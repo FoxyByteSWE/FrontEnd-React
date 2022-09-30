@@ -1,4 +1,4 @@
-const { register, login, update } = require('../model').user;
+const { register, login, update, deleteuser } = require('../model').user;
 const tokenHandler = require('./middlewares/token');
 
 const postRegister = (req, res) => {
@@ -27,16 +27,27 @@ const postLogin = (req, res) => {
 }
 
 const putUpdate = (req, res) => {
-	const { Username, Password } = req.body;
-	update(Username, Email, (err, result) => {
+	const { email, password } = req.body;
+	console.log(email);
+	update(email, password, (err, result) => {
 		if (err)
 			return res.status(500).send({ error: true, message: err.message })
 		res.send(result);
 	});
 }
 
+const deleteUser = (req, res) => {
+	const email = req.params.userId;
+	deleteuser(email, (err) => {
+		if (err)
+			return res.status(500).send({ error: true, message: err.message })
+		return res.status(200).send("success");
+	});
+}
+
 module.exports = {
 	postRegister,
 	postLogin,
-	putUpdate
+	putUpdate,
+	deleteUser
 };

@@ -1,7 +1,7 @@
 const express = require('express');
 //const { loginCheck } = require('./middlewares/auth.js');
 const router = express.Router();
-const { postRegister,postLogin,putUpdate } = require('./user');
+const { postRegister,postLogin,putUpdate, deleteUser } = require('./user');
 const { getRestaurants, getTopRetaurants } = require('./restaurant');
 const { deleteFav, postFav } = require('./favourite');
 const { getSearch } = require('./search');
@@ -79,7 +79,45 @@ router.post('/register', postRegister);
  *         description: something bad happend
  */
 router.post('/login', postLogin);
-router.put('/update', putUpdate);
+/**
+ * @swagger
+ *
+ * /users:
+ *   put:
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: email
+ *         in: formData
+ *         required: true
+ *         type: string
+ *       - name: password
+ *         in: formData
+ *         required: true
+ *         type: string
+ *     description: Endpoint to post an existing user wanting to login on our webapp
+ *     responses:
+ *       200:
+ *         description: successful signup
+ *       500:
+ *         description: something bad happend
+ */
+router.put('/users', putUpdate);
+/**
+ * @swagger
+ * /users/{userId}: 
+ *   delete:
+ *     parameters:
+ *       - name: userId
+ *         in: path
+ *         required: true
+ *         type: string
+ *     description: Endpoint for getting all restaurants available in the database
+ *     responses:
+ *       200:
+ *         description: a success message
+ */
+router.delete('/users/:userId', deleteUser);
 /**
  * @swagger
  *

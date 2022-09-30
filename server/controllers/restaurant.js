@@ -14,7 +14,8 @@ const getTopRetaurants = (_, res) => {
 		if(err)
 			return res.status(500).send({error: true, message: err.message})
 		res.send(result)
-	})
+	});
+
 }
 
 module.exports = {
