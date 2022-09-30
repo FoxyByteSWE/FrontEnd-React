@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "../../../style/Placepage.css";
+import "./index.css";
 import { GoLocation } from 'react-icons/go';
 import { BsTelephoneFill } from 'react-icons/bs';
 import { TbBrandInstagram, TbWorld } from 'react-icons/tb';
@@ -8,11 +8,12 @@ import { useLocation } from "react-router-dom";
 function PlacePage() {
     const arrayRest= useLocation();
     const data= arrayRest.state.restaurant;
+    const immagine = data.Nome.toString().replaceAll(' ','+');
     return (
             <div className="container mb-5 py-5">
                 <h2 className="mb-3 text-center" data-testid="nome-locale-pp">{data.Nome}</h2>
                     <div className="container-img m-auto">
-                        <img data-testid="img-locale-pp" src={data.Immagine} crossOrigin='*' className="img-restaurant d-block w-100 h-100" alt="..."/>
+                        <img data-testid="img-locale-pp" src={`https://react-app-michelin.s3.eu-central-1.amazonaws.com/${immagine}.jpg`} crossOrigin='*' className="img-restaurant d-block w-100 h-100" alt="..."/>
                     </div>
                         
 

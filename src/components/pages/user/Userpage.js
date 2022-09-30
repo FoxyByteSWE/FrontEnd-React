@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import RestaurantCard from "../../restaurantcard/RestaurantCard";
-import "../../../style/Userpage.css";
 import controller from "./controller"
 import { AvatarGenerator } from "random-avatar-generator";
 import * as Yup from 'yup';
@@ -64,7 +63,7 @@ const { errors } = formState
                     <button className="btn btn-danger" onClick={deleteUser}>Eimina profilo</button>
                 </div>
             </div>
-            <h2 className="user-section-title">Your Favourites</h2>
+            <h2 className="user-section-title">Posti salvati</h2>
             <div className='user-favs'>
             {
                 user.favList && user.favList.map((restaurant, index) => {

@@ -1,10 +1,9 @@
 import React from 'react';
 import { useEffect } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiLogIn, FiLogOut, FiUserPlus, FiUser, FiSearch, FiMenu } from 'react-icons/fi';
-import {AiOutlineClose} from 'react-icons/ai';
 import "./index.css";
-import mainLogo from "../../../Logo/logo3.png";
+import mainLogo from "../../Logo/logo3.png";
 import controller from "./controller"
 
 function Navbar({loginStatus}) {

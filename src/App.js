@@ -1,17 +1,16 @@
 import Home from "./components/pages/home/Home";
 import Login from "./components/pages/user/Login";
-import Favourites from "./components/pages/favourites/Favourites";
 import ErrorPage from "./components/pages/errorpage/ErrorPage";
 import PlacePage from "./components/pages/place/PlacePage";
 import Search from "./components/pages/search/Search";
 import Userpage from "./components/pages/user/Userpage";
 import Signup from "./components/pages/user/Signup";
-import Navbar from "./components/pages/navbar/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import React from 'react';
 import { useState, useMemo } from "react";
-import "./style/App.css";
+import "./App.css";
 import { UserContext } from "./components/UserContext";
 import Axios from "axios";
 
@@ -35,7 +34,6 @@ function App() {
                 <Route path="/login"  element={<Login/>} />
                 <Route path="/sign-up" element={<Signup/>}/>
                 <Route path="/place-page/:path" element={<PlacePage/>} />
-                <Route path="/favourites" element={<Favourites/>}/>
                 <Route path="/user-page/:username" element={<Userpage />}/>
                 <Route path="/search" element={<Search />}/>
                 <Route path="*" element={<ErrorPage/>}/>

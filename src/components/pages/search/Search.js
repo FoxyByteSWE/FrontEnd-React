@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from "react";
 import "./index.css";
 import RestaurantCard from "../../restaurantcard/RestaurantCard";
-import controller from "../navbar/controller";
+import controller from "../../navbar/controller";
 
 
 function Search() {

@@ -3,24 +3,23 @@ import {Link} from 'react-router-dom';
 import { AiFillHeart } from 'react-icons/ai';
 import { UserContext } from "../UserContext";
 import { API } from '../../config';
-import "../../style/RestaurantCard.css";
+import "./index.css";
 
 const RestaurantCard = ({restaurant}) => {
     const {user, setUser} = useContext(UserContext);
     const addToFav = (id)=> async () => {
         if (user && user.Email) {
             const response = await fetch(API + '/fav', {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            method: 'POST', 
             mode: 'cors', // no-cors, *cors, same-origin
-            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            cache: 'no-cache',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: JSON.stringify({
                 user_id: user.Email,
                 place_id: id,
-            }) // body data type must match "Content-Type" header
+            })
         });
 
         if (!response.ok) {
@@ -66,6 +65,7 @@ const RestaurantCard = ({restaurant}) => {
         }
     }
     const path = restaurant.Nome.toString().replace(/ /g,'-').toLowerCase();
+    const immagine = restaurant.Nome.toString().replaceAll(' ','+');
     return(
         <div to={`/place-page/${path}`} state= {{restaurant}} className="card-favs m-auto border-0 shadow">
             {
@@ -80,7 +80,7 @@ const RestaurantCard = ({restaurant}) => {
                 }
                 </div>
             }
-            <img className="card-img-top" src={restaurant.Immagine} crossOrigin="*" alt="Card image cap" data-testid="img-locale-rc"/>
+            <img className="card-img-top" src={`https://react-app-michelin.s3.eu-central-1.amazonaws.com/${immagine}.jpg`} crossOrigin="*" alt="Card image cap" data-testid="img-locale-rc"/>
             <div className="card-body text-center">
                 <h5 className="card-title my-3" data-testid="nome-locale-rc">{restaurant.Nome}</h5>
                 <h6 data-testid="categoria-locale-rc">{restaurant.Categoria}</h6>
