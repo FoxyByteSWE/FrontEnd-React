@@ -80,7 +80,7 @@ const RestaurantCard = ({restaurant}) => {
                 }
                 </div>
             }
-            <img className="card-img-top" src={restaurant.Immagine} alt="Card image cap" data-testid="img-locale-rc"/>
+            <img className="card-img-top" src={restaurant.Immagine} crossOrigin="*" alt="Card image cap" data-testid="img-locale-rc"/>
             <div className="card-body text-center">
                 <h5 className="card-title my-3" data-testid="nome-locale-rc">{restaurant.Nome}</h5>
                 <h6 data-testid="categoria-locale-rc">{restaurant.Categoria}</h6>
