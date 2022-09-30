@@ -91,22 +91,16 @@ export default function controller() {
 
     async function deleteUser(e) {
         e.preventDefault();
-        const response = await fetch(`${API}/users`, {
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json'
-            },
-            body: JSON.stringify({
-                email: user.Email
-            })  
+        const response = await fetch(`${API}/users/${user.Email}`, {
+            method: 'DELETE'
         })
         if (!response.ok) {
             const message = `An error has occured: ${response.message}`;
             return alert(message);
         }
         setUser(null);
-        localStorage.removeItem('user');
-        navigate(`/`);
+        localStorage.clear();
+        navigate('/');
     }
 
     return {
